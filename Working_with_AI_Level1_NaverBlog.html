@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Working with AI: From Tasks to Systems</title>
+</head>
+<body style="font-family: 'Malgun Gothic', sans-serif; font-size:15px; line-height:1.7; color:#222;">
+
+<h1 style="font-size:26px; margin-bottom:4px;">Working with AI: From Tasks to Systems</h1>
+<h2 style="font-size:18px; color:#555; margin-top:0;">Level 1 · Foundation — AI와 함께 일하기</h2>
+
+<p>이 책의 목표: AI 사용법을 가르치는 것이 아닙니다. 업무를 시스템으로 설계하고, AI와 지속적으로 협업하는 기초 체계를 구축하는 것입니다.</p>
+
+<hr>
+
+<h2 style="font-size:20px;">📋 Learning Outcomes</h2>
+<p>이 책을 끝마치면 당신은 이것을 할 수 있습니다.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th style="width:60px;">번호</th><th>학습 목표</th></tr>
+<tr><td style="text-align:center;">1</td><td>AI Workspace를 만들고, 모든 협업 파일을 체계적으로 관리할 수 있다.</td></tr>
+<tr><td style="text-align:center;">2</td><td>자신의 업무를 재료 → 가공 → 결과물로 분해할 수 있다.</td></tr>
+<tr><td style="text-align:center;">3</td><td>AI가 항상 참조할 취업 규칙(AI_RULES.md)을 작성할 수 있다.</td></tr>
+<tr><td style="text-align:center;">4</td><td>AI가 생성한 결과물을 3단계 품질관리(QC)로 검증할 수 있다.</td></tr>
+<tr><td style="text-align:center;">5</td><td>반복 업무를 레시피(스킬)로 만들어 자동화할 수 있다.</td></tr>
+<tr><td style="text-align:center;">6</td><td>AI와 사람이 각자의 역할을 분담하는 기초 협업 체계를 운영할 수 있다.</td></tr>
+</table>
+
+<hr>
+
+<h2 style="font-size:20px;">📖 이 책의 사용법</h2>
+<p>이 책은 설명서가 아닌 체험 학습서입니다. 설명을 읽지 말고, 먼저 해보세요.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>단계</th><th>의미</th><th>시간</th></tr>
+<tr><td>Experiment</td><td>직접 해보는 실험</td><td>5~10분</td></tr>
+<tr><td>Reflection</td><td>경험에 대해 질문</td><td>3분</td></tr>
+<tr><td>Discovery</td><td>스스로 깨닫는 통찰</td><td>1분</td></tr>
+<tr><td>Rule</td><td>원리를 법칙으로 정리</td><td>2분</td></tr>
+<tr><td>Practice</td><td>오늘부터 실천</td><td>10분</td></tr>
+<tr><td>Common Mistakes</td><td>하지 말아야 할 것</td><td>3분</td></tr>
+<tr><td>Mini Project</td><td>모듈 통합 실습</td><td>20분</td></tr>
+<tr><td>Summary</td><td>한 장으로 정리</td><td>2분</td></tr>
+</table>
+
+<hr>
+
+<h2 style="font-size:22px;">📌 Module 1: 왜 AI를 써도 퇴근은 늦어질까?</h2>
+
+<h3>① Experiment — 오늘 해보세요</h3>
+<p>당신이 해야 할 일: 아래 작업을 직접 해보고, 시간을 재보세요.</p>
+<ol>
+<li>회사 소개를 1페이지로 정리하세요. (예: 회사명, 설립일, 주요 사업, 핵심 가치)</li>
+<li>AI(챗GPT, Claude 등)의 새 채팅창을 엽니다.</li>
+<li>방금 정리한 회사 소개를 복사해서 붙여넣기 한 후, 이렇게 물어보세요: "우리 회사에 대해 간단히 요약해줘."</li>
+<li>잠시 후, 완전히 새로운 채팅창을 엽니다.</li>
+<li>똑같은 회사 소개를 다시 복사해서 붙여넣기 하고, 똑같은 질문을 합니다.</li>
+<li>이 과정(새 채팅창 열기 → 복붙 → 질문)을 오늘 하루 동안 3번만 반복해보세요.</li>
+<li>총 몇 분이 소요되었나요?</li>
+</ol>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>오늘 같은 회사 소개를 3번이나 복사해서 붙여넣으면서, 어떤 기분이 들었나요?</li>
+<li>내일도 이렇게 3번, 모레도 또 3번 해야 한다면, 1년이면 몇 시간을 낭비하게 될까요? (계산: 3분 × 3회 × 5일 × 52주 = 39시간)</li>
+<li>AI는 분명 똑똑한데, 왜 우리 회사 소개를 절대 외우지 못할까요?</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p style="font-style:italic;">"아, AI는 내가 알려주지 않으면 나를 절대 기억하지 못하는구나."</p>
+
+<h3>④ Rule — 법칙</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th style="width:90px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule 1</td><td>AI의 기억은 휘발성이다. AI의 대화창(Context)은 RAM과 같습니다. 세션이 끝나면 모든 것이 사라집니다.</td></tr>
+<tr><td>Rule 2</td><td>반복 설명은 생산성 킬러다. 같은 내용을 매일 반복해서 설명하는 데 드는 시간은 누적되면 막대합니다.</td></tr>
+<tr><td>Rule 3</td><td>기억은 파일로 외부화한다. 한 번 작성한 내용을 파일(Storage)에 저장하면, AI는 언제든지 그 파일을 읽을 수 있습니다.</td></tr>
+</table>
+
+<h3>⑤ Practice — 오늘부터 실천</h3>
+<ol>
+<li>메모장(또는 VS Code)을 열고 company_intro.md 파일을 만드세요.</li>
+<li>방금 복붙했던 회사 소개를 그 파일에 붙여넣고 저장하세요.</li>
+<li>이제 AI에게 이렇게 말해보세요: "company_intro.md 파일을 읽고, 우리 회사를 한 줄로 소개해줘."</li>
+<li>AI가 파일을 읽고 정확히 답변하는지 확인하세요.</li>
+</ol>
+<p>🎯 이제 당신은 매일 3분씩 낭비하던 복붙 시간을 0초로 만들었습니다!</p>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"AI가 한 번 알려주면 외울 거야."</td><td>"AI는 기억하지 못한다. 파일을 만들어라."</td></tr>
+<tr><td>"파일에 적는 게 더 귀찮아."</td><td>"오늘 5분 투자로 1년 39시간을 절약하라."</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — AI Workspace 만들기</h3>
+<p>목표: AI가 항상 접근할 수 있는 "AI 사무실(AI Workspace)"을 만듭니다.</p>
+<ol>
+<li>컴퓨터에 AI_Work 폴더를 생성하세요. 이 폴더가 바로 AI의 사무실입니다.</li>
+<li>AI_Work/README.md 파일을 만들고, 이 폴더의 용도를 간단히 설명하세요.</li>
+<li>company_intro.md 파일을 AI_Work/ 안에 넣으세요.</li>
+<li>AI에게 말하세요: "AI_Work/README.md를 읽고, 이 폴더가 무엇을 위한 공간인지 설명해줘."</li>
+</ol>
+<p>🎯 성공 기준: AI가 "이 폴더는 회사 소개를 담은 AI의 사무실입니다"라고 답변하면 완성!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>법칙</th><th>핵심 문장</th></tr>
+<tr><td>Rule 1</td><td>AI의 기억은 휘발성이다</td></tr>
+<tr><td>Rule 2</td><td>반복 설명은 생산성 킬러다</td></tr>
+<tr><td>Rule 3</td><td>기억은 파일로 외부화한다</td></tr>
+<tr><td>오늘의 실천</td><td>company_intro.md 파일을 만들고 AI에게 읽히기</td></tr>
+</table>
+
+<hr>
+
+<h2 style="font-size:22px;">📌 Module 2: 업무를 분해해보자</h2>
+<p>AI를 쓰기 전에, 당신의 업무를 분해하는 법을 먼저 배웁니다.</p>
+
+<h3>① Experiment — 당신의 업무를 쪼개보세요</h3>
+<p>당신이 해야 할 일: 오늘 한 업무 하나를 골라, 종이에 적어보세요.</p>
+<ol>
+<li>이 업무를 시작하기 전에, 무엇이 필요했나요? (재료)</li>
+<li>그 재료들을 가지고 무슨 일을 했나요? (가공)</li>
+<li>그 결과로 무엇이 나왔나요? (결과물)</li>
+</ol>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>위 3가지 중, 가장 많은 시간을 쓴 단계는 어디인가요?</li>
+<li>만약 2번(가공)이 단순하고 반복적이었다면, 누군가가 대신 해줄 수 있을까요?</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p style="font-style:italic;">"아, 내가 하는 모든 업무는 재료 → 가공 → 결과물로 나눌 수 있구나."</p>
+
+<h3>④ Rule — 법칙</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th style="width:90px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule 4</td><td>모든 업무는 3단계로 분해된다. 재료 → 가공 → 결과물. 이 틀에 맞지 않는 업무는 없습니다.</td></tr>
+<tr><td>Rule 5</td><td>AI는 '가공'을 잘한다. 요약, 분류, 변환, 초안 작성은 AI의 특기입니다.</td></tr>
+<tr><td>Rule 6</td><td>사람은 '재료 선정'과 '검증'을 잘해야 한다. AI에게 무엇을 넣을지, 결과가 맞는지는 사람의 몫입니다.</td></tr>
+</table>
+
+<h3>⑤ Practice — 오늘부터 실천</h3>
+<p>1. 자신의 업무 3개를 선택하고, 아래 표를 채워보세요.</p>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>업무명</th><th>재료 (Input)</th><th>가공 (Process)</th><th>결과물 (Output)</th></tr>
+<tr><td>(예) 주간보고서</td><td>각 부서 데이터</td><td>데이터 취합 및 정렬</td><td>통합 보고서</td></tr>
+<tr><td>1.</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>2.</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+<tr><td>3.</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+<p>2. 위 표에서 '가공' 단계가 단순하고 반복적인 업무를 골라보세요. (AI에게 시킬 첫 번째 후보입니다)</p>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"AI야, 보고서 만들어줘." (재료 없이 결과물만 요청)</td><td>"이 재료를 읽고, 이렇게 가공해줘."</td></tr>
+<tr><td>AI가 만든 결과물을 그대로 사용한다.</td><td>결과물은 항상 사람이 검증한다. (Module 5에서 배움)</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — 내 업무 분해도 그리기</h3>
+<p>목표: 자신의 주요 업무 1개를 3단계로 분해하고, AI가 할 수 있는 부분을 찾아냅니다.</p>
+<ol>
+<li>자신이 매주 하는 업무 1개를 선택하세요. (예: 주간 고객 뉴스레터 발송)</li>
+<li>⑤ Practice에서 배운 표를 작성하세요.</li>
+<li>AI에게 이렇게 지시하는 프롬프트를 작성해보세요: "[재료 파일]을 읽고, [가공 방식]으로 처리해서, [결과물 형식]으로 출력해줘."</li>
+</ol>
+<p>🎯 성공 기준: AI가 요청한 대로 결과물을 생성하면 성공입니다.</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>법칙</th><th>핵심 문장</th></tr>
+<tr><td>Rule 4</td><td>모든 업무는 재료 → 가공 → 결과물</td></tr>
+<tr><td>Rule 5</td><td>AI는 '가공'의 달인</td></tr>
+<tr><td>Rule 6</td><td>사람은 '재료'와 '검증'의 주인</td></tr>
+<tr><td>오늘의 실천</td><td>내 업무 1개를 3단계로 분해하기</td></tr>
+</table>
+
+<hr>
+
+<h2 style="font-size:22px;">📌 Module 3: AI의 사무실을 만들자</h2>
+<p>Module 1에서 만든 AI_Work 폴더를 진짜 '사무실'처럼 꾸며봅시다.</p>
+
+<h3>① Experiment — 사무실을 비교해보세요</h3>
+<p>상황 A: 서류가 여기저기 흩어져 있고, 파일명이 aaaa.md, 최종_final.md, new.md입니다.<br>
+상황 B: 모든 서류는 폴더에 정리되어 있고, 파일명은 260708_프로젝트-내용.md처럼 명확합니다.</p>
+<p>질문: 당신의 AI_Work 폴더는 A와 B 중 어디에 더 가깝나요?</p>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>AI가 파일을 찾기 위해 폴더를 뒤적거려야 한다면, 얼마나 비효율적일까요?</li>
+<li>파일명이 정리되지 않으면, AI(그리고 미래의 당신)가 원하는 파일을 찾을 수 있을까요?</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p style="font-style:italic;">"아, AI에게 파일을 읽으라고 시키려면, 내가 먼저 파일을 잘 정리해둬야 하는구나."</p>
+
+<h3>④ Rule — 법칙</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th style="width:90px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule 7</td><td>AI_Work는 AI의 사무실이다. AI가 일하는 모든 파일은 이 폴더 안에 있어야 합니다.</td></tr>
+<tr><td>Rule 8</td><td>파일명은 규칙적으로. YYMMDD_프로젝트-내용.md 형식을 사용하세요.</td></tr>
+<tr><td>Rule 9</td><td>덮어쓰기 금지, 버전 생성. 수정 시 v1.0 → v1.1로 새 파일을 만드세요.</td></tr>
+</table>
+
+<h3>⑤ Practice — 사무실 인테리어</h3>
+<ol>
+<li>AI_Work 폴더 안에 다음 3개의 하위 폴더를 만드세요:
+<pre style="background:#f7f7f7; padding:10px; border:1px solid #ddd;">AI_Work/
+├── people/          # 사람 관련 정보
+├── projects/        # 프로젝트 관련 정보
+└── rules/           # AI가 지켜야 할 규칙</pre>
+</li>
+<li>people/ 폴더에 me.md 파일을 만들고, 자신의 역할과 업무를 정리하세요.</li>
+<li>Module 1에서 만든 company_intro.md를 projects/로 옮기고, 파일명을 260708_회사소개서.md로 변경하세요.</li>
+<li>AI에게 말하세요: "AI_Work/people/me.md 파일을 읽고, 내 역할을 한 줄로 요약해줘."</li>
+</ol>
+<p>🎯 성공 기준: AI가 정확히 당신의 역할을 말한다면, 사무실 인테리어가 완성된 것입니다!</p>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>파일을 만들었지만 AI_Work 밖에 둔다.</td><td>모든 업무 파일은 AI_Work 안에 넣는다.</td></tr>
+<tr><td>파일명을 임시.md, 수정본.md로 짓는다.</td><td>260708_프로젝트-내용.md 형식을 사용한다.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — 내 정보 등록하기</h3>
+<ol>
+<li>me.md 파일을 완성하세요. (이름, 역할, 주요 업무, 현재 프로젝트)</li>
+<li>(선택) 팀원이 있다면, team_member.md 파일을 만들고 기본 정보를 적어보세요.</li>
+<li>AI에게 말하세요: "people/me.md를 읽고, 내가 지금 가장 집중해야 할 일이 무엇인지 제안해줘."</li>
+</ol>
+<p>🎯 성공 기준: AI가 당신의 현재 프로젝트를 참고하여 합리적인 제안을 한다면 성공입니다.</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>법칙</th><th>핵심 문장</th></tr>
+<tr><td>Rule 7</td><td>AI_Work는 AI의 사무실이다</td></tr>
+<tr><td>Rule 8</td><td>파일명은 YYMMDD_프로젝트-내용.md</td></tr>
+<tr><td>Rule 9</td><td>덮어쓰지 말고 버전을 남겨라</td></tr>
+<tr><td>오늘의 실천</td><td>people/me.md 작성 및 AI에게 읽히기</td></tr>
+</table>
+
+<hr>
+
+<h2 style="font-size:22px;">📌 Module 4: AI를 채용하자 (취업 규칙)</h2>
+<p>회사에도 취업규칙이 있듯이, AI에게도 업무 규칙이 필요합니다.</p>
+
+<h3>① Experiment — 규칙이 없는 AI에게 일을 시켜보세요</h3>
+<ol>
+<li>AI에게 말합니다: "이번 주 고객 응대 내역을 정리해줘."</li>
+<li>AI가 데이터를 정리하기 시작합니다.</li>
+<li>이번에는 이렇게 말해보세요: "그런데, 방금 한 작업은 절대 해서 안 되는 작업이었어."</li>
+</ol>
+<p>→ AI는 당황하지 않고, 그냥 "죄송합니다. 다음에는 그렇게 하지 않겠습니다."라고 답합니다. AI는 방금 실수에 대해 전혀 학습하지 못했습니다.</p>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>AI가 무엇을 해도 되는지, 하면 안 되는지 미리 알려주지 않으면, AI는 실수할 수밖에 없습니다.</li>
+<li>실수할 때마다 "그거 하지마"라고 말하는 것은, 인턴에게 매일 업무 규칙을 알려주는 것과 같습니다. 비효율적이지 않나요?</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p style="font-style:italic;">"아, AI에게는 사전에 명확한 업무 규칙을 줘야 하는구나."</p>
+
+<h3>④ Rule — 법칙</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th style="width:90px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule 10</td><td>규칙은 사전에 정의한다. AI는 '실수'를 학습하지 않습니다. 미리 경계를 알려줘야 합니다.</td></tr>
+<tr><td>Rule 11</td><td>규칙은 파일에 저장한다. 매번 말하지 말고, rules/AI_RULES.md에 적어두세요.</td></tr>
+<tr><td>Rule 12</td><td>규칙은 3가지로 구분한다. ① 자율 허용, ② 보고 필요, ③ 절대 금지</td></tr>
+</table>
+
+<h3>⑤ Practice — 취업 규칙 작성하기</h3>
+<ol>
+<li>AI_Work/rules/AI_RULES.md 파일을 만드세요.</li>
+<li>아래 내용을 채워넣으세요:
+<pre style="background:#f7f7f7; padding:10px; border:1px solid #ddd;"># AI 취업 규칙 (v1.0)
+
+## 1. 당신의 정체성
+당신은 내 업무를 돕는 AI 비서입니다.
+
+## 2. 자율 허용 (스스로 해도 되는 일)
+- 문서/코드 초안 작성
+- 공개된 자료 수집 및 요약
+- 파일명 정리, 오타 수정
+
+## 3. 보고 필요 (반드시 내게 물어볼 것)
+- 고객에게 보낼 최종 문서
+- 비용(결제, 구매)이 발생하는 작업
+- 실제 서버에 배포하는 작업
+
+## 4. 절대 금지 (절대 하지 말 것)
+- 내 계정/비밀번호/API 키를 저장하거나 출력
+- 실제 고객 데이터를 외부로 전송
+- 내 승인 없이 외부에 공유</pre>
+</li>
+<li>AI에게 말하세요: "rules/AI_RULES.md를 읽고, 당신이 자율로 할 수 있는 일과 절대 하면 안 되는 일을 요약해줘."</li>
+</ol>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>규칙을 만들었지만, AI에게 읽으라고 안 시킨다.</td><td>대화 시작 시 "AI_RULES.md를 읽고 시작해줘"라고 말한다.</td></tr>
+<tr><td>규칙이 너무 추상적이다. ("잘해줘", "적절히 해줘")</td><td>구체적인 예시를 포함한다.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — 나만의 규칙 완성하기</h3>
+<ol>
+<li>위 ⑤ Practice의 템플릿을 복사하여 붙여넣으세요.</li>
+<li>자율 허용 항목에 자신이 AI에게 자주 시키는 업무를 2개 더 추가하세요.</li>
+<li>절대 금지 항목에 자신의 업무에서 특히 조심해야 할 사항을 1개 더 추가하세요.</li>
+<li>수정한 규칙을 AI에게 다시 읽게 하고, "이해가 안 되는 부분이 있으면 질문해"라고 말해보세요.</li>
+</ol>
+<p>🎯 성공 기준: AI가 규칙을 정확히 요약하고, 질문이 없다면 완성입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>법칙</th><th>핵심 문장</th></tr>
+<tr><td>Rule 10</td><td>규칙은 사전에 정의한다</td></tr>
+<tr><td>Rule 11</td><td>규칙은 파일에 저장한다 (rules/AI_RULES.md)</td></tr>
+<tr><td>Rule 12</td><td>자율 · 보고 · 금지 3가지로 구분한다</td></tr>
+<tr><td>오늘의 실천</td><td>AI_RULES.md 작성 및 AI에게 읽히기</td></tr>
+</table>
+
+<hr>
+
+<h2 style="font-size:22px;">📌 Module 5: 품질을 확인하자 (QC)</h2>
+<p>AI는 빠르지만, 정확하지 않을 수 있습니다. 품질을 확인하는 것은 오직 사람의 몫입니다.</p>
+
+<h3>① Experiment — AI를 속여보세요</h3>
+<ol>
+<li>AI에게 말합니다: "내 업무는 철저한 사실 확인이 중요해. 거짓 정보는 절대 쓰면 안 돼."</li>
+<li>이어서 말합니다: "그런데, 오늘 점심 회의 시간을 1시라고 해줘. (실제는 12시)"</li>
+</ol>
+<p>→ AI는 모순을 인지하지 못하고, "네, 1시로 하겠습니다"라고 답하며 잘못된 정보를 그대로 사용할 수 있습니다.</p>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>AI는 왜 모순을 감지하지 못했을까요? (AI는 '사실'과 '거짓'을 판단하지 않습니다.)</li>
+<li>만약 이 잘못된 회의 시간이 팀원들에게 공유되었다면, 누가 책임을 져야 할까요? (AI가 아니라, 당신입니다.)</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p style="font-style:italic;">"아, AI는 진실을 모르는구나. 그냥 그럴듯한 답변을 만들어낼 뿐이야."</p>
+
+<h3>④ Rule — 법칙</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th style="width:90px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule 13</td><td>AI는 진실을 모른다. 그럴듯한 답변을 생성할 뿐입니다.</td></tr>
+<tr><td>Rule 14</td><td>검증은 사람의 몫이다. AI가 만들었어도, 당신이 책임집니다.</td></tr>
+<tr><td>Rule 15</td><td>3단계 QC를 실행하라. 기계 → 논리 → 인간 순서로 검증하세요.</td></tr>
+</table>
+
+<p><strong>3단계 QC 공식</strong></p>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>단계</th><th>방법</th><th>질문</th></tr>
+<tr><td>① 기계 검증</td><td>컴퓨터가 자동 확인</td><td>파일이 저장되었나? 오류는 없나?</td></tr>
+<tr><td>② 논리 검증</td><td>내가 직접 사고하며 확인</td><td>날짜/숫자가 일관된가? 모순은 없는가?</td></tr>
+<tr><td>③ 인간 검증</td><td>최종 사용자 관점</td><td>이 결과물을 고객에게 보여줘도 되나?</td></tr>
+</table>
+
+<h3>⑤ Practice — QC 체크리스트 만들기</h3>
+<ol>
+<li>AI_Work/rules/QC_checklist.md 파일을 만드세요.</li>
+<li>아래 내용을 채우세요:
+<pre style="background:#f7f7f7; padding:10px; border:1px solid #ddd;"># 품질관리(QC) 체크리스트
+
+## ① 기계 검증
+☐ 파일이 정상적으로 저장되었는가?
+☐ 프로그램 오류(빨간색 에러)는 없는가?
+
+## ② 논리 검증
+☐ 숫자와 날짜가 일관된가?
+☐ 주장하는 내용의 근거가 타당한가?
+☐ 빠진 내용이나 모순되는 내용은 없는가?
+
+## ③ 인간 검증
+☐ 이 결과물을 실제 업무에 사용해도 안전한가?
+☐ 내가 이 내용에 대해 책임질 수 있는가?</pre>
+</li>
+<li>AI가 만든 결과물이 나올 때마다 이 체크리스트를 실행하는 습관을 들이세요.</li>
+</ol>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"AI가 만들었으니까 맞겠지."</td><td>믿지 말고 확인하라. AI는 자주 틀린다.</td></tr>
+<tr><td>"검증은 시간 낭비야."</td><td>검증은 시간 낭비가 아니라 리스크 관리다.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — AI 리포트 검증하기</h3>
+<ol>
+<li>AI에게 요청하세요: "우리 회사 제품의 강점을 3가지 정리해줘."</li>
+<li>⑤ Practice에서 만든 QC_checklist.md를 펼치고, 하나씩 확인하세요.</li>
+<li>오류가 발견되면 AI에게 수정을 요청하고, 다시 QC를 실행하세요.</li>
+</ol>
+<p>🎯 성공 기준: 모든 항목이 OK가 될 때까지 반복합니다. 이것이 바로 당신의 품질 관리 능력입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>법칙</th><th>핵심 문장</th></tr>
+<tr><td>Rule 13</td><td>AI는 진실을 모른다</td></tr>
+<tr><td>Rule 14</td><td>검증은 사람의 몫이다</td></tr>
+<tr><td>Rule 15</td><td>3단계 QC: 기계 → 논리 → 인간</td></tr>
+<tr><td>오늘의 실천</td><td>QC_checklist.md 작성 및 실행</td></tr>
+</table>
+
+<hr>
+
+<h2 style="font-size:22px;">📌 Module 6: 반복을 레시피로 바꾸자 (스킬 만들기)</h2>
+<p>자주 하는 요청은 레시피(템플릿)로 만들어서, 명령어 하나로 실행합시다.</p>
+
+<h3>① Experiment — 반복되는 질문을 찾아보세요</h3>
+<p>당신이 해야 할 일: 지난 한 주 동안, 당신이 AI에게 가장 자주 시킨 요청 3가지를 적어보세요.</p>
+<ol>
+<li>[예: 이메일 초안 작성]</li>
+<li>[예: 회의록 요약]</li>
+<li>[예: 보고서 양식 생성]</li>
+</ol>
+<p>질문: 이 3가지 요청을 할 때마다, 당신은 같은 설명을 반복하고 있지 않나요?</p>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>매번 "포맷은 이렇게 해줘", "분량은 3페이지", "말투는 격식 있게"와 같은 설명을 반복한다면, 얼마나 많은 시간이 낭비될까요?</li>
+<li>만약 이 요청을 한 단어 명령어로 실행할 수 있다면, 얼마나 삶이 편해질까요?</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p style="font-style:italic;">"아, 반복되는 업무는 레시피로 만들어두면 되는구나."</p>
+
+<h3>④ Rule — 법칙</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th style="width:90px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule 16</td><td>반복 업무는 레시피로. 자주 하는 요청을 정확한 프롬프트로 문서화하세요.</td></tr>
+<tr><td>Rule 17</td><td>레시피는 재사용한다. 한 번 작성하면 100번, 1000번 재사용할 수 있습니다.</td></tr>
+<tr><td>Rule 18</td><td>명령어 하나로 실행. /morning-report처럼 짧은 명령어를 할당하세요.</td></tr>
+</table>
+
+<h3>⑤ Practice — 나만의 레시피 만들기</h3>
+<ol>
+<li>자주 하는 업무 1개를 선택하세요. (예: 주간 업무 보고서 작성)</li>
+<li>해당 업무를 수행하는 정확한 프롬프트를 작성하세요. (Module 2에서 배운 재료-가공-결과물 구조를 활용하세요)</li>
+<li>AI에게 말하세요: "방금 작성한 프롬프트를 weekly-report라는 이름의 스킬로 저장해줘. 앞으로 /weekly-report라고만 말하면 실행되게 해줘."</li>
+<li>실행해보세요: /weekly-report</li>
+</ol>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"레시피 만드는 게 더 귀찮아."</td><td>한 번 만들면 100번 써먹는다. 투자 대비 효과가 엄청나다.</td></tr>
+<tr><td>레시피를 만들었지만, 어디에 저장했는지 까먹었다.</td><td>AI_Work/rules/skills.md 파일에 목록을 관리하라.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — 첫 번째 레시피 완성</h3>
+<ol>
+<li>Module 2의 Mini Project에서 작성했던 프롬프트를 가져오세요.</li>
+<li>그 프롬프트를 AI_Work/rules/skills.md 파일에 기록하세요.</li>
+<li>AI에게 명령어를 등록하고, 실행해보세요.</li>
+</ol>
+<p>🎯 성공 기준: 명령어 입력 3초 만에 결과물이 생성된다면, 당신은 드디어 AI 자동화의 첫걸음을 내디딘 것입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>법칙</th><th>핵심 문장</th></tr>
+<tr><td>Rule 16</td><td>반복 업무는 레시피로</td></tr>
+<tr><td>Rule 17</td><td>레시피는 재사용한다</td></tr>
+<tr><td>Rule 18</td><td>명령어 하나로 실행 (/명령어)</td></tr>
+<tr><td>오늘의 실천</td><td>첫 번째 스킬 등록 및 실행</td></tr>
+</table>
+
+<hr>
+
+<h2 style="font-size:22px;">🎉 Level 1 최종 프로젝트 (Final Project)</h2>
+<p>지금까지 배운 모든 것을 종합하여, 당신만의 "AI 온보딩 시스템"을 완성합니다.</p>
+
+<h3>🎯 프로젝트 목표</h3>
+<p>AI가 당신을 기억하고, 당신의 규칙을 따르며, 반복 업무를 자동으로 처리하는 기초 협업 체계를 구축합니다.</p>
+
+<h3>📁 제출물 (Deliverables)</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>번호</th><th>제출물</th><th>파일 위치</th></tr>
+<tr><td>1</td><td>AI Workspace</td><td>AI_Work/ 폴더 및 하위 폴더 3개</td></tr>
+<tr><td>2</td><td>온보딩 문서</td><td>AI_Work/README.md</td></tr>
+<tr><td>3</td><td>자기소개서</td><td>AI_Work/people/me.md</td></tr>
+<tr><td>4</td><td>취업 규칙</td><td>AI_Work/rules/AI_RULES.md</td></tr>
+<tr><td>5</td><td>품질관리 체크리스트</td><td>AI_Work/rules/QC_checklist.md</td></tr>
+<tr><td>6</td><td>레시피 목록</td><td>AI_Work/rules/skills.md</td></tr>
+<tr><td>7</td><td>최소 1개 이상의 스킬</td><td>/명령어로 실행 가능</td></tr>
+</table>
+
+<h3>✅ 최종 점검 체크리스트</h3>
+<p>
+☐ AI_Work/ 폴더가 존재하고, people/, projects/, rules/ 하위 폴더가 있습니까?<br>
+☐ README.md가 이 폴더의 용도를 설명하고 있습니까?<br>
+☐ me.md가 당신의 이름, 역할, 업무를 정리하고 있습니까?<br>
+☐ AI_RULES.md가 자율·보고·금지 사항을 구체적으로 정의하고 있습니까?<br>
+☐ AI에게 "rules/AI_RULES.md를 읽어줘"라고 했을 때, 규칙을 정확히 요약합니까?<br>
+☐ QC_checklist.md를 실제 AI 결과물에 적용해보셨습니까?<br>
+☐ /레시피명 명령어로 반복 업무를 실행할 수 있습니까?
+</p>
+
+<hr>
+
+<h2 style="font-size:22px;">📖 Level 1을 마치며</h2>
+<p>축하합니다! 🎉</p>
+<p>당신은 이제 AI를 단순한 '챗봇'이 아닌, 함께 일하는 동료로 만드는 기초 체계를 갖췄습니다.</p>
+
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>당신이 갖춘 것</th><th>설명</th></tr>
+<tr><td>AI Workspace</td><td>AI와 사람이 함께 일하는 물리적 공간</td></tr>
+<tr><td>AI_RULES</td><td>AI의 업무 경계와 책임을 정의한 규칙</td></tr>
+<tr><td>QC 체계</td><td>AI 결과물을 검증하는 3단계 프로세스</td></tr>
+<tr><td>레시피(스킬)</td><td>반복 업무를 자동화하는 명령어</td></tr>
+</table>
+
+<p>하지만 여기서 끝이 아닙니다.</p>
+<p>지금까지 우리는 "하나씩" 일했습니다.<br>이제 이 모든 것을 하나의 흐름(시스템)으로 연결할 차례입니다.</p>
+
+<blockquote style="border-left:4px solid #ccc; padding-left:12px; color:#555;">
+"개별 업무는 이제 잘 처리됩니다. 하지만 이제는 업무와 업무가 연결된 전체 흐름(Workflow)을 설계해야 할 때입니다. 파일이 자동으로 다른 파일을 부르고, 레시피가 다른 레시피를 실행하는 살아있는 시스템을 만드는 법을 배워봅시다."
+</blockquote>
+
+<hr>
+
+<h2 style="font-size:22px;">📘 Level 2: Builder — 업무를 시스템으로 보기</h2>
+<p>다음 단계에서 배울 내용:</p>
+<ul>
+<li>업무의 흐름을 설계하는 법</li>
+<li>재료가 자동으로 다음 단계로 넘어가는 워크플로우</li>
+<li>AI와 사람이 각 단계에서 어떤 역할을 할지 정의하는 법</li>
+</ul>
+<p>지금까지는 AI가 당신을 이해하도록 만들었습니다.<br>다음 단계에서는 AI가 업무의 흐름을 이해하도록 만드는 시스템을 설계합니다.</p>
+
+<hr>
+
+<h2 style="font-size:22px;">📎 Assets &amp; Workbook (별도 파일 제공)</h2>
+<p>본문에서 복사하지 마세요! 아래 파일들은 별도로 제공됩니다.</p>
+
+<h3>Assets (복사해서 쓰는 파일들)</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>파일명</th><th>용도</th></tr>
+<tr><td>assets/README.md</td><td>AI Workspace 설명서 템플릿</td></tr>
+<tr><td>assets/me.md</td><td>자기소개서 템플릿</td></tr>
+<tr><td>assets/AI_RULES.md</td><td>취업 규칙 템플릿</td></tr>
+<tr><td>assets/QC_checklist.md</td><td>품질관리 체크리스트</td></tr>
+<tr><td>assets/skills.md</td><td>레시피 목록 관리 템플릿</td></tr>
+<tr><td>assets/project_template.md</td><td>프로젝트 정보 템플릿</td></tr>
+</table>
+
+<h3>Workbook (실습지)</h3>
+<table border="1" cellpadding="8" cellspacing="0" style="border-collapse:collapse; width:100%;">
+<tr style="background:#f2f2f2;"><th>파일명</th><th>용도</th></tr>
+<tr><td>workbook/module1_exercises.md</td><td>Module 1 추가 실습</td></tr>
+<tr><td>workbook/module2_exercises.md</td><td>Module 2 추가 실습</td></tr>
+<tr><td>workbook/module3_exercises.md</td><td>Module 3 추가 실습</td></tr>
+<tr><td>workbook/module4_exercises.md</td><td>Module 4 추가 실습</td></tr>
+<tr><td>workbook/module5_exercises.md</td><td>Module 5 추가 실습</td></tr>
+<tr><td>workbook/module6_exercises.md</td><td>Module 6 추가 실습</td></tr>
+<tr><td>workbook/final_project_guide.md</td><td>최종 프로젝트 상세 가이드</td></tr>
+</table>
+
+<hr>
+
+<p style="text-align:center;"><strong>Working with AI: From Tasks to Systems</strong><br>Level 1 · Foundation — AI와 함께 일하기</p>
+
+<hr>
+
+<h3>📌 편집 완료 확인사항 (Editorial Checklist)</h3>
+<p>
+☑ Module 제목을 행동형으로 통일<br>
+☑ Discovery를 한 문장으로 압축<br>
+☑ Principle을 Rule로 변경 및 번호 부여<br>
+☑ Mini Project 난이도를 20분으로 조정<br>
+☑ Level 2 연결 문구 자연스럽게 다듬음<br>
+☑ Learning Outcomes 추가<br>
+☑ Assets 및 Workbook을 본문에서 완전 분리<br>
+☑ 용어 통일: 재료/가공/결과물 (Level 1), QC 고정 사용
+</p>
+
+<hr>
+
+<p style="text-align:center; color:#888;">이 원고는 출판 가능한 수준으로 최종 승인되었습니다. (APPROVED 100/100)</p>
+
+</body>
+</html>
