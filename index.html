@@ -3,966 +3,163 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VialiS Lab · AI 협업 커리큘럼</title>
-<meta name="description" content="AI와 함께 일하기 — VialiS Lab 교육 자료 인덱스">
+<title>VialiS Lab · AI와 함께 성장하기</title>
+<meta name="description" content="Working with AI, Thinking with AI, Knowledge with AI, Learning with AI, Cognitive Engineering with AI — Human-AI Engineering 5부작 시리즈">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#FAF7F0;
-    --paper-raised:#FFFFFF;
-    --ink:#1E2420;
-    --line:#DCD6C8;
-    --line-strong:#C7BFAE;
-    --jade:#2B6A5C;
-    --jade-dim:#3f8272;
-    --gold:#B9862E;
-    --muted:#74716A;
+    --paper:#FAF7F0; --paper-raised:#FFFFFF; --ink:#1E2420;
+    --line:#DCD6C8; --line-strong:#C7BFAE;
+    --jade:#2B6A5C; --jade-dim:#3f8272; --gold:#B9862E; --muted:#74716A;
     --radius:4px;
-    --serif: 'Noto Serif KR', serif;
-    --sans: 'Noto Sans KR', -apple-system, 'Malgun Gothic', sans-serif;
-    --mono: 'IBM Plex Mono', ui-monospace, monospace;
+    --serif:'Noto Serif KR', serif; --sans:'Noto Sans KR', -apple-system, 'Malgun Gothic', sans-serif; --mono:'IBM Plex Mono', ui-monospace, monospace;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --paper:#161A18;
-      --paper-raised:#1D2220;
-      --ink:#EDEAE2;
-      --line:#33372F;
-      --line-strong:#454A40;
-      --jade:#5FA894;
-      --jade-dim:#4c8a78;
-      --gold:#D6A84A;
-      --muted:#9A968A;
-    }
-    .skeleton{
-      background:linear-gradient(90deg, #23271f 0%, #2b2f26 50%, #23271f 100%);
-      background-size:200% 100%;
+      --paper:#161A18; --paper-raised:#1D2220; --ink:#EDEAE2;
+      --line:#33372F; --line-strong:#454A40;
+      --jade:#5FA894; --jade-dim:#4c8a78; --gold:#D6A84A; --muted:#9A968A;
     }
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
-  body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:var(--sans);
-    line-height:1.65;
-    -webkit-font-smoothing:antialiased;
-  }
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans); line-height:1.65; -webkit-font-smoothing:antialiased;}
   a{color:inherit;}
-  ::selection{background:var(--jade);color:#fff;}
+  ::selection{background:var(--jade); color:#fff;}
 
-  /* ---------- header ---------- */
-  header.site{
-    max-width:920px;
-    margin:0 auto;
-    padding:72px 24px 40px;
-    border-bottom:1px solid var(--line);
-  }
-  .eyebrow{
-    font-family:var(--mono);
-    font-size:12px;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--gold);
-    margin:0 0 14px;
-  }
-  h1.title{
-    font-family:var(--serif);
-    font-weight:700;
-    font-size:clamp(28px,4.2vw,42px);
-    line-height:1.2;
-    margin:0 0 12px;
-    letter-spacing:-.01em;
-  }
-  p.lede{
-    font-size:16px;
-    color:var(--muted);
-    max-width:56ch;
-    margin:0 0 28px;
-  }
-  .meta-row{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-    align-items:center;
-    font-family:var(--mono);
-    font-size:12.5px;
-    color:var(--muted);
-  }
-  .meta-pill{
-    border:1px solid var(--line-strong);
-    border-radius:999px;
-    padding:5px 12px;
-    background:var(--paper-raised);
-  }
-  .meta-pill strong{color:var(--ink);font-weight:600;}
+  .wrap{max-width:920px; margin:0 auto; padding:0 24px;}
 
-  /* ---------- pipeline diagram ---------- */
-  .pipeline-section{
-    max-width:920px;
-    margin:0 auto;
-    padding:32px 24px 8px;
+  header.hero{padding:88px 0 40px; text-align:center;}
+  .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); margin:0 0 16px;}
+  h1.title{font-family:var(--serif); font-weight:700; font-size:clamp(30px,5vw,46px); line-height:1.25; margin:0 0 18px; letter-spacing:-.01em;}
+  p.lede{font-size:16px; color:var(--muted); max-width:52ch; margin:0 auto 32px;}
+  .cta-row{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--sans); font-size:14.5px; font-weight:600; text-decoration:none;
+    padding:12px 22px; border-radius:999px; display:inline-block;
   }
-  .section-heading{
-    font-family:var(--serif);
-    font-weight:600;
-    font-size:16px;
-    color:var(--ink);
-    margin:0 0 4px;
-  }
-  .section-sub{
-    font-size:13px;
-    color:var(--muted);
-    margin:0 0 16px;
-  }
-  .pipeline{
-    display:flex;
-    align-items:stretch;
-    gap:0;
-    overflow-x:auto;
-    padding-bottom:6px;
-  }
-  .pipeline-node{
-    flex:1 1 0;
-    min-width:108px;
-    background:var(--paper-raised);
-    border:1px solid var(--line);
-    border-top:3px solid var(--jade);
-    border-radius:var(--radius);
-    padding:12px 10px;
-    text-align:center;
-  }
-  .pipeline-node.io{
-    border-top-color:var(--gold);
-    background:transparent;
-    border-style:dashed;
-  }
-  .pipeline-node .fw{
-    font-family:var(--mono);
-    font-size:10.5px;
-    color:var(--gold);
-    display:block;
-    margin-bottom:4px;
-  }
-  .pipeline-node .name{
-    font-family:var(--serif);
-    font-weight:600;
-    font-size:13.5px;
-    color:var(--ink);
-  }
-  .pipeline-arrow{
-    flex:0 0 auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    width:28px;
-    color:var(--line-strong);
-    font-size:16px;
-  }
-  @media (max-width:700px){
-    .pipeline{flex-direction:column;}
-    .pipeline-arrow{width:auto; height:20px; transform:rotate(90deg);}
-    .pipeline-node{min-width:0;}
-  }
+  .btn.primary{background:var(--jade); color:#fff;}
+  .btn.primary:hover{background:var(--jade-dim);}
+  .btn.ghost{border:1px solid var(--line-strong); color:var(--ink);}
+  .btn.ghost:hover{border-color:var(--jade); color:var(--jade);}
 
-  /* ---------- series hub ---------- */
-  .hub-section{
-    max-width:920px;
-    margin:0 auto;
-    padding:28px 24px 8px;
-  }
-  .hub-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
-    gap:14px;
-  }
-  a.hub-card{
-    display:block;
-    text-decoration:none;
-    background:var(--paper-raised);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:16px 18px;
-    transition:transform .15s ease, box-shadow .15s ease;
-  }
-  a.hub-card:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 20px -10px rgba(30,36,32,.22);
-    border-color:var(--jade);
-  }
-  a.hub-card:focus-visible{outline:2px solid var(--jade); outline-offset:2px;}
-  .hub-card-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    gap:8px;
-    margin-bottom:6px;
-  }
-  .hub-card-name{
-    font-family:var(--serif);
-    font-weight:600;
-    font-size:16px;
-    color:var(--ink);
-  }
-  .hub-badge{
-    flex:0 0 auto;
-    font-family:var(--mono);
-    font-size:10.5px;
-    padding:3px 8px;
-    border-radius:999px;
-    white-space:nowrap;
-  }
-  .hub-badge.complete{background:rgba(43,106,92,.12); color:var(--jade);}
-  .hub-badge.partial{background:rgba(185,134,46,.14); color:var(--gold);}
-  .hub-card-fw{
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--gold);
-    margin-bottom:8px;
-  }
-  .hub-card-desc{
-    font-size:13px;
-    color:var(--muted);
-    margin-bottom:10px;
-    min-height:34px;
-  }
-  .hub-card-progress-row{
-    display:flex;
-    align-items:center;
-    gap:8px;
-  }
-  .hub-progress-track{
-    flex:1;
-    height:5px;
-    background:var(--line);
-    border-radius:99px;
-    overflow:hidden;
-  }
-  .hub-progress-fill{
-    height:100%;
-    background:var(--jade);
-    border-radius:99px;
-  }
-  .hub-progress-label{
-    font-family:var(--mono);
-    font-size:11px;
-    color:var(--muted);
-    flex:0 0 auto;
-  }
+  section{padding:8px 0 44px;}
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin-bottom:18px; flex-wrap:wrap; gap:8px;}
+  .section-title{font-family:var(--serif); font-weight:600; font-size:19px; margin:0;}
+  .section-more{font-family:var(--mono); font-size:12px; color:var(--jade); text-decoration:none;}
+  .section-more:hover{color:var(--gold);}
 
-  /* ---------- framework index ---------- */
-  .fw-section{
-    max-width:920px;
-    margin:0 auto;
-    padding:28px 24px 8px;
-  }
-  table.fw-table{
-    width:100%;
-    border-collapse:collapse;
-    font-size:13.5px;
-  }
-  table.fw-table th{
-    text-align:left;
-    font-family:var(--mono);
-    font-size:11px;
-    letter-spacing:.04em;
-    text-transform:uppercase;
-    color:var(--muted);
-    padding:6px 10px 8px;
-    border-bottom:1px solid var(--line-strong);
-  }
-  table.fw-table td{
-    padding:9px 10px;
-    border-bottom:1px solid var(--line);
-    vertical-align:top;
-  }
-  table.fw-table tr:last-child td{border-bottom:none;}
-  table.fw-table .fw-name{
-    font-family:var(--mono);
-    font-weight:600;
-    color:var(--jade);
-    white-space:nowrap;
-  }
-  table.fw-table .series-name{
-    font-family:var(--serif);
-    font-weight:600;
-    white-space:nowrap;
-  }
-
-  /* ---------- search ---------- */
-  .toolbar{
-    max-width:920px;
-    margin:0 auto;
-    padding:22px 24px 0;
-    display:flex;
-    gap:12px;
-    align-items:center;
-  }
-  #searchInput{
-    flex:1;
-    font-family:var(--sans);
-    font-size:14.5px;
-    padding:11px 14px;
-    border:1px solid var(--line-strong);
-    border-radius:var(--radius);
-    background:var(--paper-raised);
-    color:var(--ink);
-    outline:none;
-  }
-  #searchInput:focus-visible{
-    border-color:var(--jade);
-    box-shadow:0 0 0 3px rgba(43,106,92,.15);
-  }
-  #searchInput::placeholder{color:#a6a296;}
-
-  /* ---------- main / spine layout ---------- */
-  main{
-    max-width:920px;
-    margin:0 auto;
-    padding:36px 24px 100px;
-  }
-  .spine{
-    position:relative;
-    padding-left:64px;
-  }
-  .series-group{
-    margin-bottom:44px;
-  }
-  .series-group:last-child{
-    margin-bottom:0;
-  }
-  .series-title{
-    font-family:var(--serif);
-    font-weight:600;
-    font-size:19px;
-    margin:0 0 4px 0;
-    padding-bottom:10px;
-    border-bottom:1px solid var(--line);
-    display:flex;
-    align-items:baseline;
-    gap:10px;
-  }
-  .series-count{
-    font-family:var(--mono);
-    font-size:12px;
-    font-weight:500;
-    color:var(--muted);
-  }
-  .series-tagline{
-    display:block;
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--gold);
-    margin:10px 0 18px;
-  }
-  .spine::before{
-    content:"";
-    position:absolute;
-    left:27px;
-    top:6px;
-    bottom:6px;
-    width:1px;
-    background:linear-gradient(var(--line-strong), var(--line-strong) 92%, transparent);
-  }
-  .entry{
-    position:relative;
-    margin-bottom:22px;
-    opacity:0;
-    transform:translateY(10px);
-    animation:rise .5s ease forwards;
-  }
-  @media (prefers-reduced-motion: reduce){
-    .entry{animation:none;opacity:1;transform:none;}
-  }
-  @keyframes rise{
-    to{opacity:1;transform:translateY(0);}
-  }
-  .tab{
-    position:absolute;
-    left:-64px;
-    top:22px;
-    width:56px;
-    height:26px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-family:var(--mono);
-    font-size:12px;
-    font-weight:600;
-    color:var(--paper-raised);
-    background:var(--jade);
-    border-radius:3px 0 0 3px;
-    letter-spacing:.02em;
-  }
-  .tab.unnumbered{background:var(--muted);}
-  .tab::after{
-    content:"";
-    position:absolute;
-    right:-8px;
-    top:0;
-    width:0;height:0;
-    border-top:13px solid transparent;
-    border-bottom:13px solid transparent;
-    border-left:8px solid var(--jade);
-  }
-  .tab.unnumbered::after{border-left-color:var(--muted);}
-
-  a.card{
-    display:block;
-    text-decoration:none;
-    background:var(--paper-raised);
-    border:1px solid var(--line);
-    border-left:3px solid var(--jade);
-    border-radius:var(--radius);
-    padding:20px 24px;
+  .series-grid{display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:14px;}
+  a.series-card{
+    display:block; text-decoration:none; background:var(--paper-raised);
+    border:1px solid var(--line); border-top:3px solid var(--jade);
+    border-radius:var(--radius); padding:20px 22px;
     transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
   }
-  a.card:hover{
-    transform:translateX(2px);
-    box-shadow:0 6px 20px -8px rgba(30,36,32,.18);
-    border-left-color:var(--gold);
-  }
-  a.card:focus-visible{
-    outline:2px solid var(--jade);
-    outline-offset:2px;
-  }
-  .card-kicker{
-    font-family:var(--mono);
-    font-size:11.5px;
-    letter-spacing:.06em;
-    color:var(--gold);
-    text-transform:uppercase;
-    margin-bottom:6px;
-  }
-  .card-title{
-    font-family:var(--serif);
-    font-weight:600;
-    font-size:20px;
-    margin:0 0 6px;
-    color:var(--ink);
-  }
-  .card-desc{
-    font-size:14.5px;
-    color:var(--muted);
-    margin:0 0 12px;
-    max-width:66ch;
-  }
-  .card-foot{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    font-family:var(--mono);
-    font-size:12px;
-    color:#9b9789;
-  }
-  .card-foot .go{
-    color:var(--jade);
-    font-weight:600;
-  }
-  a.card:hover .card-foot .go{color:var(--gold);}
+  a.series-card:hover{transform:translateY(-2px); box-shadow:0 10px 22px -12px rgba(30,36,32,.25); border-top-color:var(--gold);}
+  a.series-card:focus-visible{outline:2px solid var(--jade); outline-offset:2px;}
+  .phase-tag{font-family:var(--mono); font-size:10.5px; color:var(--gold); text-transform:uppercase; letter-spacing:.05em;}
+  .series-name{font-family:var(--serif); font-weight:600; font-size:18px; margin:6px 0 6px;}
+  .series-fw{font-family:var(--mono); font-size:11.5px; color:var(--muted); margin-bottom:10px;}
+  .series-desc{font-size:13.5px; color:var(--muted); margin:0;}
 
-  /* ---------- states ---------- */
-  .state-box{
-    padding:40px 28px;
-    border:1px dashed var(--line-strong);
-    border-radius:var(--radius);
-    background:var(--paper-raised);
-    text-align:center;
-    color:var(--muted);
-    font-size:14.5px;
+  .strip-row{display:flex; gap:14px; flex-wrap:wrap;}
+  a.strip-card{
+    flex:1 1 260px; text-decoration:none; background:var(--paper-raised);
+    border:1px solid var(--line); border-radius:var(--radius); padding:18px 20px;
+    transition:border-color .15s ease;
   }
-  .state-box strong{display:block;color:var(--ink);font-family:var(--serif);font-size:17px;margin-bottom:8px;font-weight:600;}
-  .state-box a.retry{
-    display:inline-block;
-    margin-top:14px;
-    font-family:var(--mono);
-    font-size:12.5px;
-    color:var(--jade);
-    border:1px solid var(--line-strong);
-    padding:7px 14px;
-    border-radius:999px;
-    text-decoration:none;
-  }
-  .state-box a.retry:hover{border-color:var(--jade);}
-  .skeleton{
-    height:78px;
-    border-radius:var(--radius);
-    background:linear-gradient(90deg, #f1efe8 0%, #f8f6f0 50%, #f1efe8 100%);
-    background-size:200% 100%;
-    animation:shimmer 1.4s ease-in-out infinite;
-    margin-bottom:22px;
-  }
-  @media (prefers-reduced-motion: reduce){ .skeleton{animation:none;} }
-  @keyframes shimmer{
-    0%{background-position:200% 0;}
-    100%{background-position:-200% 0;}
-  }
+  a.strip-card:hover{border-color:var(--jade);}
+  .strip-title{font-family:var(--serif); font-weight:600; font-size:16px; margin:0 0 6px; display:flex; align-items:center; gap:8px;}
+  .strip-desc{font-size:13px; color:var(--muted); margin:0;}
 
-  footer.site{
-    max-width:920px;
-    margin:0 auto;
-    padding:0 24px 60px;
-    font-family:var(--mono);
-    font-size:12px;
-    color:var(--muted);
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:8px;
-  }
-  footer.site a{color:var(--jade);text-decoration:none;}
+  footer.site{padding:30px 0 60px; font-family:var(--mono); font-size:12px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; border-top:1px solid var(--line);}
+  footer.site a{color:var(--jade); text-decoration:none;}
   footer.site a:hover{text-decoration:underline;}
 
   @media (max-width:600px){
-    .spine{padding-left:46px;}
-    .spine::before{left:19px;}
-    .tab{left:-46px;width:40px;font-size:10.5px;}
-    a.card{padding:16px 16px;}
+    header.hero{padding:56px 0 32px;}
   }
 </style>
 </head>
 <body>
 
-<header class="site">
-  <p class="eyebrow">VialiS Lab · Education</p>
-  <h1 class="title">AI와 함께 성장하기</h1>
-  <p class="lede">업무·사고·지식·학습·인지까지, AI와 함께 일하는 법을 단계별로 익히는 교육 시리즈 모음입니다. 새 자료는 모듈 폴더에 올리는 즉시 이 목록에 자동으로 나타나고, 시리즈별로 묶여 정리됩니다.</p>
-  <div class="meta-row">
-    <span class="meta-pill"><strong id="countPill">–</strong> 개 모듈</span>
-    <span class="meta-pill">저장소 <strong>VialiS-Lab.github.io</strong></span>
-    <span class="meta-pill" id="updatedPill">최신 확인 중…</span>
-  </div>
-</header>
+<div class="wrap">
 
-<section class="pipeline-section">
-  <p class="section-heading">🔗 통합 파이프라인</p>
-  <p class="section-sub">다섯 시리즈는 독립적인 교재가 아니라, 하나의 결과물이 다음 시리즈의 재료가 되는 연결된 시스템입니다.</p>
-  <div class="pipeline">
-    <div class="pipeline-node io"><span class="name">Input</span></div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-node"><span class="fw">AI OS · EBRE</span><span class="name">Working</span></div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-node"><span class="fw">QHER</span><span class="name">Thinking</span></div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-node"><span class="fw">K-OS</span><span class="name">Knowledge</span></div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-node"><span class="fw">L.E.A.R.N.</span><span class="name">Learning</span></div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-node"><span class="fw">C.E.N.G.I.N.E.</span><span class="name">Cognitive Eng.</span></div>
-    <div class="pipeline-arrow">→</div>
-    <div class="pipeline-node io"><span class="name">Output</span></div>
-  </div>
-</section>
+  <header class="hero">
+    <p class="eyebrow">VialiS Lab · Human-AI Engineering</p>
+    <h1 class="title">AI와 함께 일하고, 생각하고,<br>지식을 쌓고, 성장하기</h1>
+    <p class="lede">업무 · 사고 · 지식 · 학습 · 인지 설계까지 — AI와 함께 일하는 법을 단계별로 익히는 5부작 Human-AI Engineering 시리즈입니다.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="./series/working-with-ai.html">학습 시작하기 →</a>
+      <a class="btn ghost" href="#series">시리즈 둘러보기</a>
+      <a class="btn ghost" href="https://github.com/VialiS-Lab/VialiS-Lab.github.io" target="_blank" rel="noopener">GitHub ↗</a>
+    </div>
+  </header>
 
-<section class="hub-section">
-  <p class="section-heading">📚 시리즈 허브</p>
-  <p class="section-sub">시리즈를 선택하면 아래 상세 목록의 해당 위치로 이동합니다.</p>
-  <div class="hub-grid" id="hubGrid">
-    <div class="skeleton" style="height:120px;"></div>
-    <div class="skeleton" style="height:120px;"></div>
-  </div>
-</section>
+  <section id="series">
+    <div class="section-head">
+      <h2 class="section-title">📚 시리즈</h2>
+    </div>
+    <div class="series-grid">
+      <a class="series-card" href="./series/working-with-ai.html">
+        <span class="phase-tag">Phase 1</span>
+        <p class="series-name">Working with AI</p>
+        <p class="series-fw">AI OS · EBRE</p>
+        <p class="series-desc">파일 기반 AI 업무 시스템을 만들고, 증거 기반 역공학으로 시스템을 분석합니다.</p>
+      </a>
+      <a class="series-card" href="./series/thinking-with-ai.html">
+        <span class="phase-tag">Phase 2</span>
+        <p class="series-name">Thinking with AI</p>
+        <p class="series-fw">QHER Engine</p>
+        <p class="series-desc">질문·가설·증거·추론(QHER)으로 AI와 함께 체계적으로 사고하는 법을 배웁니다.</p>
+      </a>
+      <a class="series-card" href="./series/knowledge-with-ai.html">
+        <span class="phase-tag">Phase 3</span>
+        <p class="series-name">Knowledge with AI</p>
+        <p class="series-fw">K-OS Engine</p>
+        <p class="series-desc">정보를 지식으로 전환하는 8단계 Lifecycle과 Knowledge Graph를 구축합니다.</p>
+      </a>
+      <a class="series-card" href="./series/learning-with-ai.html">
+        <span class="phase-tag">Phase 4</span>
+        <p class="series-name">Learning with AI</p>
+        <p class="series-fw">L.E.A.R.N. Engine</p>
+        <p class="series-desc">인지과학 기반 학습 사이클과 Spaced Repetition으로 AI와 함께 성장합니다.</p>
+      </a>
+      <a class="series-card" href="./series/cognitive-engineering-with-ai.html">
+        <span class="phase-tag">Phase 5</span>
+        <p class="series-name">Cognitive Engineering with AI</p>
+        <p class="series-fw">C.E.N.G.I.N.E. + MIDAR</p>
+        <p class="series-desc">6개 설계 차원과 메타 인지 제어 루프로 인간-AI 통합 시스템을 설계합니다.</p>
+      </a>
+    </div>
+  </section>
 
-<section class="fw-section">
-  <p class="section-heading">🧩 프레임워크 색인</p>
-  <p class="section-sub">각 시리즈가 정의하는 고유 프레임워크입니다.</p>
-  <table class="fw-table">
-    <tr><th>시리즈</th><th>프레임워크</th><th>한 줄 설명</th></tr>
-    <tr><td class="series-name">Working with AI</td><td class="fw-name">AI OS · EBRE</td><td>파일 기반 업무 시스템 구축 + 증거 기반 역공학으로 패턴 분석</td></tr>
-    <tr><td class="series-name">Thinking with AI</td><td class="fw-name">QHER Engine</td><td>Question→Hypothesis→Evidence→Reasoning 사고 파이프라인, EQI·Reasoning Audit 포함</td></tr>
-    <tr><td class="series-name">Knowledge with AI</td><td class="fw-name">K-OS Engine</td><td>정보를 지식으로 전환하는 8단계 Lifecycle, Knowledge Graph·Evolution 포함</td></tr>
-    <tr><td class="series-name">Learning with AI</td><td class="fw-name">L.E.A.R.N. Engine</td><td>인지과학 기반 학습(Acquire→Retrieve→Apply→Reflect), Spaced Repetition 포함</td></tr>
-    <tr><td class="series-name">Cognitive Engineering with AI</td><td class="fw-name">C.E.N.G.I.N.E. + MIDAR</td><td>6개 설계 차원 + 메타 인지 제어 루프로 인간-AI 통합 시스템 설계</td></tr>
-  </table>
-</section>
+  <section>
+    <div class="strip-row">
+      <a class="strip-card" href="./frameworks.html">
+        <p class="strip-title">🧩 Frameworks</p>
+        <p class="strip-desc">EBRE · QHER · K-OS · L.E.A.R.N. · C.E.N.G.I.N.E. + MIDAR 전체 색인</p>
+      </a>
+      <a class="strip-card" href="./roadmap.html">
+        <p class="strip-title">🗺️ Roadmap</p>
+        <p class="strip-desc">Phase 1~5 전체 그림과 진행 상태</p>
+      </a>
+    </div>
+  </section>
 
-<div class="toolbar">
-  <input id="searchInput" type="text" placeholder="모듈 제목으로 검색…" autocomplete="off">
 </div>
 
-<main>
-  <p class="section-heading" style="margin-bottom:2px;">📖 전체 모듈 목록</p>
-  <p class="section-sub">시리즈별 상세 모듈입니다.</p>
-  <div class="spine" id="listRoot">
-    <div class="skeleton"></div>
-    <div class="skeleton"></div>
-    <div class="skeleton"></div>
-  </div>
-</main>
-
 <footer class="site">
-  <span>© <span id="year"></span> VialiS Lab</span>
-  <a href="https://github.com/VialiS-Lab/VialiS-Lab.github.io/tree/main/modules" target="_blank" rel="noopener">GitHub에서 modules 폴더 보기 ↗</a>
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; width:100%;">
+    <span>© <span id="year"></span> VialiS Lab</span>
+    <a href="https://github.com/VialiS-Lab/VialiS-Lab.github.io" target="_blank" rel="noopener">GitHub ↗</a>
+  </div>
 </footer>
 
-<script>
-(function(){
-  document.getElementById('year').textContent = new Date().getFullYear();
-
-  const OWNER = 'VialiS-Lab';
-  const REPO  = 'VialiS-Lab.github.io';
-  const DIR   = 'modules';
-  const API_LIST = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${DIR}`;
-  const CACHE_KEY = 'vialis_modules_cache_v1';
-  const CACHE_TTL_MS = 5 * 60 * 1000; // 5분 세션 캐시
-
-  const listRoot   = document.getElementById('listRoot');
-  const countPill  = document.getElementById('countPill');
-  const updatedPill= document.getElementById('updatedPill');
-  const searchInput= document.getElementById('searchInput');
-  const hubGrid    = document.getElementById('hubGrid');
-
-  let allEntries = [];
-
-  function escapeHtml(str){
-    return (str || '').replace(/[&<>"']/g, s => ({
-      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
-    }[s]));
-  }
-
-  function extractLevel(text){
-    if(!text) return null;
-    const m = text.match(/level\s*(\d+)/i);
-    return m ? parseInt(m[1], 10) : null;
-  }
-
-  function stripLevelPrefix(subtitle){
-    if(!subtitle) return '';
-    return subtitle.replace(/^\s*level\s*\d+\s*[·:\-–]\s*/i, '').trim();
-  }
-
-  // 선택적 YAML front-matter 파싱: 파일 맨 앞이 '---'로 시작하면
-  // 그 블록 안의 title/level/duration/summary 키만 가볍게 읽는다.
-  // (전체 YAML 스펙을 지원하지 않는 최소 파서 — 값에 콜론이 없는
-  // 단순 key: value 라인만 처리)
-  function parseFrontMatter(raw){
-    if(!raw.startsWith('---')) return null;
-    const end = raw.indexOf('\n---', 3);
-    if(end === -1) return null;
-    const block = raw.slice(3, end).trim();
-    const data = {};
-    block.split('\n').forEach(line => {
-      const m = line.match(/^([a-zA-Z_]+)\s*:\s*(.+)$/);
-      if(!m) return;
-      const key = m[1].trim().toLowerCase();
-      let val = m[2].trim();
-      if(/^".*"$/.test(val) || /^'.*'$/.test(val)) val = val.slice(1, -1);
-      data[key] = val;
-    });
-    return data;
-  }
-
-  // series 메타데이터가 없는 파일도 자동으로 그룹핑되도록,
-  // "시리즈명: 부제" 관례에서 콜론 앞부분을 시리즈명으로 추출한다.
-  // (front-matter의 series 필드가 있으면 그게 항상 우선)
-  function inferSeriesFromTitle(title){
-    if(!title) return '기타';
-    const m = title.match(/^([^:：]+)[:：]/);
-    return m ? m[1].trim() : title.trim();
-  }
-
-  // 로드맵(시리즈 확장 로드맵) 순서 — 알려진 시리즈는 이 순서를 따르고,
-  // 새 시리즈가 추가되면 자동으로 맨 뒤에 알파벳순으로 붙는다.
-  const SERIES_ORDER = [
-    'Working with AI',
-    'Thinking with AI',
-    'Knowledge with AI',
-    'Learning with AI',
-    'Cognitive Engineering with AI'
-  ];
-
-  const SERIES_META = {
-    'Working with AI': {
-      framework: 'AI OS · EBRE',
-      tagline: '업무 시스템 — AI OS, EBRE',
-      desc: '파일 기반 AI 업무 시스템을 만들고, 증거 기반 역공학으로 자신의 시스템을 분석합니다.',
-      expected: 6
-    },
-    'Thinking with AI': {
-      framework: 'QHER Engine',
-      tagline: '사고 시스템 — QHER Engine',
-      desc: '질문·가설·증거·추론(QHER)으로 AI와 함께 체계적으로 사고하는 법을 배웁니다.',
-      expected: 6
-    },
-    'Knowledge with AI': {
-      framework: 'K-OS Engine',
-      tagline: '지식 시스템 — K-OS Engine',
-      desc: '정보를 지식으로 전환하는 8단계 Lifecycle과 Knowledge Graph를 구축합니다.',
-      expected: 6
-    },
-    'Learning with AI': {
-      framework: 'L.E.A.R.N. Engine',
-      tagline: '학습 시스템 — L.E.A.R.N. Engine',
-      desc: '인지과학 기반 학습 사이클과 Spaced Repetition으로 AI와 함께 성장합니다.',
-      expected: 6
-    },
-    'Cognitive Engineering with AI': {
-      framework: 'C.E.N.G.I.N.E. + MIDAR',
-      tagline: '인지 시스템 — C.E.N.G.I.N.E. + MIDAR',
-      desc: '6개 설계 차원과 메타 인지 제어 루프로 인간-AI 통합 시스템을 설계합니다.',
-      expected: 6
-    }
-  };
-  // 하위 호환: 기존 코드에서 참조하는 taglin 접근자
-  const SERIES_TAGLINE = Object.fromEntries(
-    Object.entries(SERIES_META).map(([k, v]) => [k, v.tagline])
-  );
-
-  function seriesRank(name){
-    const i = SERIES_ORDER.indexOf(name);
-    return i === -1 ? SERIES_ORDER.length : i;
-  }
-
-  async function fetchModuleMeta(item){
-    // item: { name, download_url, html_url, path }
-    const meta = {
-      file: item.name,
-      path: item.path,
-      url: `./${DIR}/${item.name}`,
-      title: item.name.replace(/\.html?$/i, '').replace(/[_\-]+/g, ' '),
-      subtitle: '',
-      desc: '',
-      duration: '',
-      series: null,
-      level: extractLevel(item.name)
-    };
-    try{
-      const res = await fetch(item.download_url);
-      if(!res.ok) throw new Error('raw fetch failed');
-      const raw = await res.text();
-
-      // 1순위: front-matter가 있으면 그것을 신뢰
-      const fm = parseFrontMatter(raw);
-      if(fm){
-        if(fm.title) meta.title = fm.title;
-        if(fm.summary) meta.desc = fm.summary;
-        if(fm.duration) meta.duration = fm.duration;
-        if(fm.series) meta.series = fm.series;
-        if(fm.level && !isNaN(parseInt(fm.level, 10))) meta.level = parseInt(fm.level, 10);
-      }
-
-      // 2순위: front-matter가 없거나 일부만 있으면 본문 스캐닝으로 보완
-      const doc = new DOMParser().parseFromString(raw, 'text/html');
-      const titleEl = doc.querySelector('title');
-      const descMeta = doc.querySelector('meta[name="description"]');
-      const h2 = doc.querySelector('h2');
-      const firstP = doc.querySelector('p');
-
-      if(!fm?.title && titleEl && titleEl.textContent.trim()){
-        meta.title = titleEl.textContent.trim();
-      }
-      if(h2 && h2.textContent.trim()){
-        meta.subtitle = h2.textContent.trim();
-        if(meta.level === null) meta.level = extractLevel(meta.subtitle);
-      }
-      if(!meta.desc){
-        if(descMeta && descMeta.getAttribute('content')){
-          meta.desc = descMeta.getAttribute('content').trim();
-        } else if(firstP && firstP.textContent.trim()){
-          meta.desc = firstP.textContent.trim().slice(0, 110);
-        }
-      }
-    }catch(e){
-      // 원문 파싱 실패해도 파일명만으로 카드는 계속 노출
-    }
-    // series는 front-matter가 없으면 최종 확정된 title에서 추론
-    if(!meta.series) meta.series = inferSeriesFromTitle(meta.title);
-    return meta;
-  }
-
-  function seriesSlug(name){
-    return 'series-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
-  }
-
-  function groupBySeries(entries){
-    const groups = new Map();
-    entries.forEach(e => {
-      const key = e.series || '기타';
-      if(!groups.has(key)) groups.set(key, []);
-      groups.get(key).push(e);
-    });
-    return [...groups.entries()].sort((a, b) => {
-      const r = seriesRank(a[0]) - seriesRank(b[0]);
-      return r !== 0 ? r : a[0].localeCompare(b[0], 'ko');
-    });
-  }
-
-  function renderHub(entries){
-    if(!hubGrid) return;
-    if(entries.length === 0){
-      hubGrid.innerHTML = `<div class="state-box">아직 등록된 시리즈가 없습니다.</div>`;
-      return;
-    }
-    const groups = groupBySeries(entries);
-    hubGrid.innerHTML = groups.map(([seriesName, list]) => {
-      const meta = SERIES_META[seriesName] || {};
-      const expected = meta.expected || list.length;
-      const count = list.length;
-      const complete = count >= expected;
-      const pct = Math.min(100, Math.round((count / expected) * 100));
-      return `
-        <a class="hub-card" href="#${seriesSlug(seriesName)}">
-          <div class="hub-card-top">
-            <span class="hub-card-name">${escapeHtml(seriesName)}</span>
-            <span class="hub-badge ${complete ? 'complete' : 'partial'}">${complete ? '✅ 완료' : '진행 중'}</span>
-          </div>
-          <div class="hub-card-fw">${escapeHtml(meta.framework || '')}</div>
-          <p class="hub-card-desc">${escapeHtml(meta.desc || '')}</p>
-          <div class="hub-card-progress-row">
-            <div class="hub-progress-track"><div class="hub-progress-fill" style="width:${pct}%;"></div></div>
-            <span class="hub-progress-label">${count}/${expected}</span>
-          </div>
-        </a>`;
-    }).join('');
-  }
-
-  function render(entries, query){
-    const q = (query || '').trim().toLowerCase();
-    const filtered = q
-      ? entries.filter(e => (e.title + ' ' + e.subtitle + ' ' + e.desc + ' ' + e.series).toLowerCase().includes(q))
-      : entries;
-
-    if(filtered.length === 0){
-      listRoot.innerHTML = `
-        <div class="state-box">
-          <strong>${q ? '검색 결과가 없습니다' : '아직 등록된 모듈이 없습니다'}</strong>
-          ${q ? '다른 검색어로 시도해보세요.' : 'modules 폴더에 .html 파일을 올리면 자동으로 이 목록에 나타납니다.'}
-        </div>`;
-      return;
-    }
-
-    const groups = groupBySeries(filtered);
-    let cardIndex = 0;
-
-    listRoot.innerHTML = groups.map(([seriesName, list]) => {
-      const cardsHtml = list.map((e) => {
-        const tabLabel = e.level !== null ? `Lv.${String(e.level).padStart(2,'0')}` : '·';
-        const tabClass = e.level !== null ? '' : 'unnumbered';
-        const subtitle = stripLevelPrefix(e.subtitle) || e.subtitle;
-        const delay = Math.min(cardIndex++, 8) * 45;
-        return `
-          <div class="entry" style="animation-delay:${delay}ms">
-            <span class="tab ${tabClass}">${tabLabel}</span>
-            <a class="card" href="${e.url}">
-              <p class="card-kicker">${e.level !== null ? `Level ${e.level}` : '모듈'}</p>
-              <h2 class="card-title">${escapeHtml(e.title)}</h2>
-              ${subtitle ? `<p class="card-desc"><em>${escapeHtml(subtitle)}</em></p>` : ''}
-              ${e.desc ? `<p class="card-desc">${escapeHtml(e.desc)}${e.desc.length >= 110 ? '…' : ''}</p>` : ''}
-              <div class="card-foot">
-                <span>${escapeHtml(e.file)}${e.duration ? ` · 약 ${escapeHtml(e.duration)}` : ''}</span>
-                <span class="go">열어보기 →</span>
-              </div>
-            </a>
-          </div>`;
-      }).join('');
-
-      const tagline = SERIES_TAGLINE[seriesName] ? `<span class="series-tagline">${escapeHtml(SERIES_TAGLINE[seriesName])}</span>` : '';
-
-      return `
-        <section class="series-group" id="${seriesSlug(seriesName)}">
-          <h2 class="series-title">${escapeHtml(seriesName)} <span class="series-count">${list.length}개</span></h2>
-          ${tagline}
-          <div class="spine">${cardsHtml}</div>
-        </section>`;
-    }).join('');
-  }
-
-  function renderError(message){
-    listRoot.innerHTML = `
-      <div class="state-box">
-        <strong>목록을 불러오지 못했습니다</strong>
-        ${escapeHtml(message)}<br>
-        GitHub API 요청 한도이거나 네트워크 문제일 수 있습니다.
-        <div>
-          <a class="retry" href="javascript:location.reload()">다시 시도</a>
-          <a class="retry" href="https://github.com/${OWNER}/${REPO}/tree/main/${DIR}" target="_blank" rel="noopener">GitHub에서 직접 보기 ↗</a>
-        </div>
-      </div>`;
-  }
-
-  function readCache(){
-    try{
-      const raw = sessionStorage.getItem(CACHE_KEY);
-      if(!raw) return null;
-      const parsed = JSON.parse(raw);
-      if(Date.now() - parsed.ts > CACHE_TTL_MS) return null;
-      return parsed.entries;
-    }catch(e){ return null; }
-  }
-  function writeCache(entries){
-    try{
-      sessionStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), entries }));
-    }catch(e){ /* storage 사용 불가 시 무시 */ }
-  }
-
-  async function load(){
-    const cached = readCache();
-    if(cached){
-      allEntries = cached;
-      countPill.textContent = allEntries.length;
-      updatedPill.textContent = '세션 캐시에서 표시 중';
-      render(allEntries);
-      renderHub(allEntries);
-      return;
-    }
-
-    try{
-      const listRes = await fetch(API_LIST, { headers: { 'Accept': 'application/vnd.github+json' } });
-      if(!listRes.ok){
-        if(listRes.status === 404){
-          allEntries = [];
-          countPill.textContent = '0';
-          updatedPill.textContent = 'modules 폴더 없음';
-          render(allEntries);
-          renderHub(allEntries);
-          return;
-        }
-        throw new Error(`GitHub API 응답 오류 (${listRes.status})`);
-      }
-      const items = await listRes.json();
-      const htmlFiles = (Array.isArray(items) ? items : [])
-        .filter(it => it.type === 'file' && /\.html?$/i.test(it.name));
-
-      if(htmlFiles.length === 0){
-        allEntries = [];
-        countPill.textContent = '0';
-        updatedPill.textContent = '자료 없음';
-        render(allEntries);
-        renderHub(allEntries);
-        return;
-      }
-
-      const metas = await Promise.all(htmlFiles.map(fetchModuleMeta));
-      metas.sort((a, b) => {
-        const sr = seriesRank(a.series || '기타') - seriesRank(b.series || '기타');
-        if(sr !== 0) return sr;
-        if(a.level === null && b.level === null) return a.title.localeCompare(b.title, 'ko');
-        if(a.level === null) return 1;
-        if(b.level === null) return -1;
-        return a.level - b.level;
-      });
-
-      allEntries = metas;
-      countPill.textContent = String(allEntries.length);
-      updatedPill.textContent = new Date().toLocaleDateString('ko-KR', { year:'numeric', month:'long', day:'numeric' }) + ' 기준';
-      writeCache(allEntries);
-      render(allEntries);
-      renderHub(allEntries);
-    }catch(err){
-      renderError(err.message || '알 수 없는 오류가 발생했습니다.');
-      if(hubGrid) hubGrid.innerHTML = `<div class="state-box">시리즈 정보를 불러오지 못했습니다.</div>`;
-      countPill.textContent = '–';
-      updatedPill.textContent = '불러오기 실패';
-    }
-  }
-
-  searchInput.addEventListener('input', () => render(allEntries, searchInput.value));
-
-  load();
-})();
-</script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 
 </body>
 </html>
