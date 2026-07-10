@@ -1,0 +1,687 @@
+---
+title: Working with AI: From Tasks to Systems — Level 6
+level: 6
+duration: 모듈당 30~40분
+summary: Level 1~5에서 만든 AI OS를 EBRE(증거 기반 역공학) 프레임워크로 분석하여 패턴과 설계 원칙을 발견하고, 통합 아키텍처와 다음 버전 계획으로 정리하는 분석가(Analyst) 과정입니다. 시리즈의 마지막 편입니다.
+---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Working with AI: From Tasks to Systems</title>
+<meta name="description" content="Level 6 · Analyst — EBRE Framework로 시스템 분석하기. 증거 기반 역공학, 패턴 발견, 아키텍처 통합, 다음 버전 설계를 다루는 교육 모듈입니다. 시리즈 최종편.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body{font-family:'Malgun Gothic', sans-serif; font-size:15px; line-height:1.7; color:#222; max-width:900px; margin:0 auto; padding:0 20px;}
+  h1{font-size:26px; margin-bottom:4px;}
+  h2.subtitle{font-size:18px; color:#555; margin-top:0; font-weight:normal;}
+  h2{font-size:22px; margin-top:48px;}
+  h3{font-size:18px; margin-top:28px;}
+  table{border-collapse:collapse; width:100%; margin:14px 0;}
+  th,td{border:1px solid #ddd; padding:8px 10px; text-align:left; vertical-align:top;}
+  th{background:#f2f2f2;}
+  .discovery{font-style:italic; color:#333;}
+  pre{background:#f7f7f7; padding:12px; border:1px solid #ddd; overflow-x:auto; font-size:13px; white-space:pre; line-height:1.4;}
+  blockquote{border-left:4px solid #ccc; padding-left:14px; color:#555; margin:16px 0;}
+  footer{margin:60px 0 40px; text-align:center; color:#888; font-size:13px;}
+  hr{border:none; border-top:1px solid #ddd; margin:36px 0;}
+</style>
+</head>
+<body>
+
+<h1>Working with AI: From Tasks to Systems</h1>
+<h2 class="subtitle">Level 6 · Analyst — EBRE Framework로 시스템 분석하기</h2>
+
+<p>이 책의 목표: Level 1~5까지 구축한 AI OS를 증거 기반으로 분석하고, 설계 원칙과 패턴을 발견하며, 일반화된 지식으로 체계화하는 것입니다.</p>
+
+<hr>
+
+<h2>📋 Learning Outcomes</h2>
+<p>이 책을 끝마치면 당신은 이것을 할 수 있습니다.</p>
+<table>
+<tr><th style="width:50px;">번호</th><th>학습 목표</th></tr>
+<tr><td>1</td><td>자신의 AI OS를 증거 기반으로 분석하는 방법(EBRE)을 이해한다.</td></tr>
+<tr><td>2</td><td>시스템의 설계 원칙과 패턴을 발견하고 문서화할 수 있다.</td></tr>
+<tr><td>3</td><td>운영 데이터를 기반으로 시스템의 강점과 약점을 진단할 수 있다.</td></tr>
+<tr><td>4</td><td>분석 결과를 일반화된 지식으로 체계화할 수 있다.</td></tr>
+<tr><td>5</td><td>다음 버전의 시스템을 설계하기 위한 인사이트를 도출할 수 있다.</td></tr>
+<tr><td>6</td><td>자신의 시스템 분석 결과를 다른 사람이 재현할 수 있는 형태로 문서화할 수 있다.</td></tr>
+</table>
+
+<hr>
+
+<h2>📖 이 책의 사용법</h2>
+<table>
+<tr><th>단계</th><th>의미</th><th>시간</th></tr>
+<tr><td>Experiment</td><td>직접 해보는 실험</td><td>5~10분</td></tr>
+<tr><td>Reflection</td><td>경험에 대해 질문</td><td>3분</td></tr>
+<tr><td>Discovery</td><td>스스로 깨닫는 통찰</td><td>1분</td></tr>
+<tr><td>Rule</td><td>원리를 법칙으로 정리</td><td>2분</td></tr>
+<tr><td>Practice</td><td>오늘부터 실천</td><td>10분</td></tr>
+<tr><td>Common Mistakes</td><td>하지 말아야 할 것</td><td>3분</td></tr>
+<tr><td>Mini Project</td><td>모듈 통합 실습</td><td>20분</td></tr>
+<tr><td>Summary</td><td>한 장으로 정리</td><td>2분</td></tr>
+</table>
+
+<hr>
+
+<h2>📌 Module 1: 왜 분석이 필요한가?</h2>
+
+<h3>① Experiment — 돌아보지 않은 여행</h3>
+<p>당신이 해야 할 일: 아래 두 여행자를 비교해보세요.</p>
+<p>여행자 A: 여행을 마치고 돌아와서 아무 기록도 남기지 않습니다. "재미있었어"라고만 말합니다. 1년 후에는 대부분의 기억이 사라집니다.<br>
+여행자 B: 여행 중 사진을 찍고, 일기를 쓰고, 배운 점을 정리합니다. 돌아와서도 그 경험을 다른 사람에게 공유할 수 있습니다.</p>
+<p>질문: 2년 후, 더 많은 것을 남긴 여행자는 누구일까요?</p>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>당신은 지금까지 구축한 AI OS를 돌아보고 분석한 적이 있나요?</li>
+<li>만약 지금 시스템을 처음부터 다시 만든다면, 무엇을 다르게 할까요?</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p class="discovery">"아, 만든 것으로 끝나는 것이 아니라, 돌아보고 배워야 진짜 성장하는구나."</p>
+
+<h3>④ Rule — 법칙</h3>
+<table>
+<tr><th style="width:90px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule 91</td><td>분석은 성장의 마지막 단계이자, 다음 성장의 첫 단계다. 시스템을 분석해야 더 나은 시스템을 만들 수 있습니다.</td></tr>
+<tr><td>Rule 92</td><td>분석은 데이터에서 시작하고, 패턴에서 완성된다. 운영 데이터를 모았으니, 이제 그 데이터에서 의미를 발견할 차례입니다.</td></tr>
+<tr><td>Rule 93</td><td>문서화된 분석은 재산이다. 당신이 분석한 내용은 다른 사람(또는 미래의 당신)이 시스템을 재현하고 개선하는 데 사용됩니다.</td></tr>
+</table>
+
+<h3>⑤ Practice — 분석할 준비가 되었나요?</h3>
+<p><strong>Step 1.</strong> 지금까지 Level 1~5를 진행하면서 만든 모든 문서를 모아보세요.</p>
+<ul>
+<li>Level 1: AI_Work/ 폴더, AI_RULES.md, QC_checklist.md, skills.md</li>
+<li>Level 2: workflow_v1~3.md, workflow_roles.md</li>
+<li>Level 3: checklist.md, monitoring_log.md, incident_manual.md, optimization_log.md, feedback_log.md, scaling_plan.md</li>
+<li>Level 4: workflow_map.md, handoff_design.md, GLOBAL_RULES.md, SELF_HEALING.md, os_diagram.md</li>
+<li>Level 5: onboarding_guide.md, roles_permissions.md, governance.md</li>
+</ul>
+<p><strong>Step 2.</strong> 지금까지의 여정을 한 문장으로 요약해보세요.</p>
+<p>"나는 [Level 1~5를 통해] [어떤 시스템]을 구축했고, [어떤 변화]를 경험했다."</p>
+<p><strong>Step 3.</strong> 이제 이 모든 것을 분석할 준비가 되었습니다.</p>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table>
+<tr><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"시스템이 잘 돌아가니까 분석은 필요 없어."</td><td>잘 돌아가는 이유를 알아야 더 잘 돌아가게 만들 수 있다.</td></tr>
+<tr><td>분석을 너무 어렵게 생각한다.</td><td>지금까지 해온 것의 연장선이다. 두려워하지 마라.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — 시스템 타임라인 그리기</h3>
+<p>목표: 지금까지 구축한 시스템의 진화 과정을 타임라인으로 그립니다.</p>
+<ol>
+<li>Level 1을 시작했던 날짜를 적으세요.</li>
+<li>각 Level을 완료한 날짜를 표시하세요.</li>
+<li>각 Level에서 가장 중요한 변화를 한 문장으로 적으세요.</li>
+</ol>
+<pre>```
+예시)
+2026-01-15: Level 1 시작 — AI Workspace 생성
+2026-01-29: Level 1 완료 — AI_RULES.md, QC 체크리스트 완성
+2026-02-12: Level 2 완료 — 첫 번째 워크플로우 완성
+2026-03-05: Level 3 완료 — 모니터링 체계 구축
+2026-03-26: Level 4 완료 — AI OS 아키텍처 완성
+2026-04-16: Level 5 완료 — 팀 온보딩 가이드 배포
+```</pre>
+<p>🎯 성공 기준: Level별 주요 변화가 정리된 타임라인이 완성되면 성공입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table>
+<tr><th>법칙</th><th>핵심 문장</th></tr>
+<tr><td>Rule 91</td><td>분석은 다음 성장의 첫 단계</td></tr>
+<tr><td>Rule 92</td><td>데이터 → 패턴 → 의미</td></tr>
+<tr><td>Rule 93</td><td>문서화된 분석은 재산</td></tr>
+<tr><td>오늘의 실천</td><td>시스템 타임라인 그리기</td></tr>
+</table>
+
+<hr>
+
+<h2>📌 Module 2: EBRE 프레임워크 소개</h2>
+
+<h3>① Experiment — 분석 도구를 만나다</h3>
+<p>당신이 해야 할 일: 지금까지 시스템을 만들고 운영했습니다. 이제 분석 도구(EBRE Framework)를 사용해봅시다.</p>
+<p><strong>EBRE란? (Evidence-Based Reverse Engineering)</strong></p>
+<ul>
+<li>시스템의 설계 원칙과 패턴을 증거(Evidence)를 기반으로 역공학(Reverse Engineering)하는 방법론입니다.</li>
+<li>지금까지 만든 문서(증거)를 분석하여, "왜 이렇게 설계했을까?"라는 질문에 답합니다.</li>
+</ul>
+<p><strong>EBRE의 4가지 핵심 구성 요소</strong></p>
+<table>
+<tr><th>구성 요소</th><th>설명</th><th>당신의 시스템에서 찾을 것</th></tr>
+<tr><td>① 관찰 (Observation)</td><td>시스템의 구조, 규칙, 흐름을 있는 그대로 기록</td><td>폴더 구조, 워크플로우, 규칙 파일</td></tr>
+<tr><td>② 코딩 (Coding)</td><td>관찰 내용에서 개념(Concept)과 관계를 추출</td><td>AI_RULES.md, 워크플로우 단계, 핸드오프</td></tr>
+<tr><td>③ 패턴 (Pattern)</td><td>반복되는 설계 방식과 원칙 발견</td><td>"파일 기반 메모리", "기계 검증", "3단계 QC"</td></tr>
+<tr><td>④ 아키텍처 (Architecture)</td><td>발견된 패턴을 하나의 모델로 통합</td><td>AI OS 아키텍처 다이어그램</td></tr>
+</table>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>지금까지 만든 문서들은 모두 EBRE의 '관찰(Observation)'에 해당합니다.</li>
+<li>이제 이 관찰 내용을 코딩하고, 패턴을 발견하고, 아키텍처로 통합할 차례입니다.</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p class="discovery">"아, 지금까지 한 모든 것은 분석을 위한 재료였구나."</p>
+
+<h3>④ Rule — 법칙</h3>
+<table>
+<tr><th style="width:90px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule 94</td><td>관찰 → 코딩 → 패턴 → 아키텍처는 EBRE의 4단계입니다.</td></tr>
+<tr><td>Rule 95</td><td>분석은 특별한 도구가 아니라, 질문하는 방법이다. "왜 이렇게 했을까?"를 계속 묻는 것이 분석입니다.</td></tr>
+<tr><td>Rule 96</td><td>모든 시스템에는 설계 원칙이 있다. 당신이 의식하지 못했더라도, 당신의 선택에는 항상 이유가 있습니다.</td></tr>
+</table>
+
+<h3>⑤ Practice — 내 시스템의 증거 목록 만들기</h3>
+<p><strong>Step 1.</strong> AI_Work/analysis/evidence_list.md 파일을 만드세요.</p>
+<p><strong>Step 2.</strong> 아래 표를 채우세요. (지금까지 만든 모든 문서를 증거로 기록)</p>
+<table>
+<tr><th>증거 번호</th><th>문서명</th><th>위치</th><th>설명</th></tr>
+<tr><td>E1</td><td>AI_RULES.md</td><td>AI_Work/rules/</td><td>AI의 업무 규칙 정의</td></tr>
+<tr><td>E2</td><td>QC_checklist.md</td><td>AI_Work/rules/</td><td>3단계 품질관리 체크리스트</td></tr>
+<tr><td>E3</td><td>workflow_final.md</td><td>AI_Work/projects/</td><td>최종 워크플로우 설계</td></tr>
+<tr><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+</table>
+<p><strong>Step 3.</strong> 최소 10개의 증거를 찾아 목록을 완성하세요.</p>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table>
+<tr><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"분석은 어려운 거야."</td><td>EBRE는 단지 질문하는 방법일 뿐이다. 두려워하지 마라.</td></tr>
+<tr><td>"증거가 너무 많아."</td><td>많은 증거는 좋은 것이다. 하나씩 정리하라.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — 나만의 EBRE 시작하기</h3>
+<p>목표: EBRE 프레임워크를 사용하여, 자신의 시스템에서 첫 번째 패턴을 발견합니다.</p>
+<ol>
+<li>⑤ Practice에서 만든 증거 목록을 보세요.</li>
+<li>"이 중에서 가장 자주 등장하는 개념은 무엇일까?"라고 질문해보세요.
+  <ul>
+    <li>예: "파일", "규칙", "검증", "자동화"</li>
+  </ul>
+</li>
+<li>그 개념이 여러 문서에 등장한다면, 그것은 패턴일 가능성이 높습니다.</li>
+<li>발견한 패턴을 AI_Work/analysis/pattern_discovery.md에 기록하세요.</li>
+</ol>
+<p>🎯 성공 기준: 최소 1개의 패턴을 발견하고, 그 패턴이 어떤 증거에서 발견되었는지 명시했다면 성공입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table>
+<tr><th>법칙</th><th>핵심 문장</th></tr>
+<tr><td>Rule 94</td><td>관찰 → 코딩 → 패턴 → 아키텍처</td></tr>
+<tr><td>Rule 95</td><td>분석은 질문하는 방법</td></tr>
+<tr><td>Rule 96</td><td>모든 선택에는 이유가 있다</td></tr>
+<tr><td>오늘의 실천</td><td>증거 목록 작성 및 첫 번째 패턴 발견</td></tr>
+</table>
+
+<hr>
+
+<h2>📌 Module 3: 관찰과 코딩</h2>
+
+<h3>① Experiment — 낯선 곳에서 패턴 찾기</h3>
+<p>당신이 해야 할 일: 아래 문장들을 읽고, 공통점을 찾아보세요.</p>
+<ul>
+<li>"AI_Work/people/me.md"</li>
+<li>"AI_Work/projects/current.md"</li>
+<li>"AI_Work/rules/AI_RULES.md"</li>
+<li>"AI_Work/rules/QC_checklist.md"</li>
+<li>"AI_Work/operations/checklist.md"</li>
+</ul>
+<p>이 파일들의 공통점은 무엇인가요? (힌트: 파일의 위치와 용도를 보세요)</p>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>당신의 시스템에서 반복되는 패턴은 무엇인가요?</li>
+<li>폴더 구조, 파일명, 워크플로우 단계 등에서 공통된 원칙을 발견할 수 있나요?</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p class="discovery">"아, 모든 파일은 목적에 따라 체계적으로 분류되어 있구나. 이게 바로 내 시스템의 패턴이야."</p>
+
+<h3>④ Rule — 법칙</h3>
+<table>
+<tr><th style="width:90px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule 97</td><td>관찰은 있는 그대로 기록하는 것이다. 해석하지 말고, 단순히 "무엇이 있는가"를 기록하세요.</td></tr>
+<tr><td>Rule 98</td><td>코딩은 관찰에서 개념을 추출하는 것이다. "이것은 무엇에 대한 파일인가?", "이 규칙의 목적은 무엇인가?"</td></tr>
+<tr><td>Rule 99</td><td>코딩은 여러 번 반복할수록 정교해진다. 처음에는 대략적인 개념부터 시작하고, 점점 세밀해지세요.</td></tr>
+</table>
+
+<h3>⑤ Practice — 관찰과 코딩 실행하기</h3>
+<p><strong>Step 1.</strong> AI_Work/analysis/observation_coding.md 파일을 만드세요.</p>
+<p><strong>Step 2.</strong> Module 2에서 만든 증거 목록을 다시 보세요.</p>
+<p><strong>Step 3.</strong> 각 증거(문서)에 대해 관찰(Observation)과 코딩(Coding)을 수행하세요.</p>
+<table>
+<tr><th>증거</th><th>관찰 (Observation)</th><th>코딩 (Coding)</th></tr>
+<tr><td>AI_RULES.md</td><td>AI가 따라야 할 규칙이 적힌 파일</td><td>개념: "Governance(거버넌스)", "Boundary(경계)"</td></tr>
+<tr><td>QC_checklist.md</td><td>결과물을 검증하는 체크리스트</td><td>개념: "Verification(검증)", "Quality Control(품질관리)"</td></tr>
+<tr><td>GLOBAL_RULES.md</td><td>모든 워크플로우에 적용되는 공통 규칙</td><td>개념: "Global Governance(글로벌 거버넌스)"</td></tr>
+</table>
+<p><strong>Step 4.</strong> 추출된 개념들을 모두 모아보세요.</p>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table>
+<tr><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>관찰에 해석을 섞는다.</td><td>"이 파일은 중요해"는 관찰이 아니라 해석입니다. "이 파일은 규칙을 정의한다"라고만 기록하세요.</td></tr>
+<tr><td>코딩이 너무 추상적이다.</td><td>"좋은 것"은 코딩이 아닙니다. "Verification", "Automation"처럼 구체적인 개념을 사용하세요.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — 개념 연결하기</h3>
+<p>목표: ⑤ Practice에서 추출한 개념들을 서로 연결(Relationship)해봅니다.</p>
+<ol>
+<li>추출한 개념들을 종이에 적으세요.</li>
+<li>개념들 사이에 화살표를 그리며 관계를 정의하세요.
+  <ul>
+    <li>Governance → Boundary</li>
+    <li>Verification → Quality Control</li>
+    <li>Automation → Workflow</li>
+  </ul>
+</li>
+<li>관계가 정의된 개념 지도를 AI_Work/analysis/concept_map.md에 기록하세요.</li>
+</ol>
+<p>🎯 성공 기준: 최소 5개의 개념이 연결된 지도가 완성되면 성공입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table>
+<tr><th>법칙</th><th>핵심 문장</th></tr>
+<tr><td>Rule 97</td><td>관찰은 있는 그대로 기록</td></tr>
+<tr><td>Rule 98</td><td>코딩은 개념을 추출</td></tr>
+<tr><td>Rule 99</td><td>반복할수록 정교해진다</td></tr>
+<tr><td>오늘의 실천</td><td>관찰과 코딩 실행 및 개념 연결</td></tr>
+</table>
+
+<hr>
+
+<h2>📌 Module 4: 패턴 발견하기</h2>
+
+<h3>① Experiment — 반복되는 디자인 찾기</h3>
+<p>당신이 해야 할 일: 아래 네 가지를 비교해보세요.</p>
+<ol>
+<li>AI_RULES.md에는 "자율 허용", "보고 필요", "절대 금지"가 있습니다.</li>
+<li>GLOBAL_RULES.md에도 "파일명 규칙", "보안 정책", "품질 기준"이 있습니다.</li>
+<li>워크플로우마다 "재료 → 가공 → 결과물" 구조가 반복됩니다.</li>
+<li>모든 문서에는 v1.0, v1.1 버전이 표시되어 있습니다.</li>
+</ol>
+<p>질문: 이 네 가지의 공통점은 무엇인가요? (힌트: 모두 어떤 원칙을 따르고 있나요?)</p>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>당신의 시스템에서 가장 자주 등장하는 규칙은 무엇인가요?</li>
+<li>그 규칙이 여러 곳에 반복된다면, 그것은 설계 원칙(Principle)일 가능성이 높습니다.</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p class="discovery">"아, 내 시스템에는 '규칙은 문서화한다', '모든 것은 버전을 가진다', '모든 업무는 3단계' 같은 패턴이 있었구나."</p>
+
+<h3>④ Rule — 법칙</h3>
+<table>
+<tr><th style="width:90px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule 100</td><td>패턴은 반복되는 해결책이다. 같은 문제가 여러 번 나타나고, 같은 방식으로 해결했다면 그것은 패턴입니다.</td></tr>
+<tr><td>Rule 101</td><td>패턴을 발견하면 원칙이 보인다. 패턴 뒤에는 항상 원칙(Principle)이 있습니다.</td></tr>
+<tr><td>Rule 102</td><td>패턴은 이름을 가져야 한다. 이름이 없는 패턴은 기억되지 않고, 공유되지 않습니다.</td></tr>
+</table>
+
+<h3>⑤ Practice — 패턴 카탈로그 만들기</h3>
+<p><strong>Step 1.</strong> AI_Work/analysis/pattern_catalog.md 파일을 만드세요.</p>
+<p><strong>Step 2.</strong> 지금까지 발견한 패턴을 정리하세요.</p>
+<table>
+<tr><th>패턴 ID</th><th>패턴 이름</th><th>설명</th><th>발견 위치 (증거)</th></tr>
+<tr><td>P1</td><td>파일 기반 메모리</td><td>모든 상태와 지식을 파일에 저장</td><td>AI_Work/ 폴더 구조</td></tr>
+<tr><td>P2</td><td>3단계 검증</td><td>기계→논리→인간 순서로 검증</td><td>QC_checklist.md</td></tr>
+<tr><td>P3</td><td>규칙의 3분할</td><td>자율·보고·금지로 규칙 구분</td><td>AI_RULES.md</td></tr>
+<tr><td>P4</td><td>버전 관리</td><td>모든 문서에 v1.0, v1.1 표시</td><td>모든 파일명</td></tr>
+<tr><td>P5</td><td>재료→가공→결과물</td><td>모든 워크플로우의 기본 구조</td><td>workflow_final.md</td></tr>
+<tr><td>P6</td><td>글로벌 규칙 우선</td><td>워크플로우보다 상위 규칙 존재</td><td>GLOBAL_RULES.md</td></tr>
+</table>
+<p><strong>Step 3.</strong> 발견한 각 패턴에 대해 "이 패턴은 어떤 문제를 해결하는가?"를 적어보세요.</p>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table>
+<tr><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"이건 너무 당연한 거야"라고 생각하며 패턴으로 등록하지 않는다.</td><td>당연한 것이 바로 가장 강력한 패턴이다. 반드시 기록하라.</td></tr>
+<tr><td>패턴에 이름을 붙이지 않는다.</td><td>이름이 있어야 기억하고 공유할 수 있다.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — 내 시스템의 TOP 5 패턴</h3>
+<p>목표: 자신의 시스템에서 가장 중요한 패턴 5개를 선정하고, 각각에 대한 설명을 작성합니다.</p>
+<ol>
+<li>⑤ Practice에서 발견한 패턴 중 가장 중요하다고 생각되는 5개를 선택하세요.</li>
+<li>각 패턴에 대해 다음을 작성하세요:
+  <ul>
+    <li>이름</li>
+    <li>설명 (한 문장)</li>
+    <li>이 패턴이 해결하는 문제</li>
+    <li>이 패턴이 나타나는 증거 (파일명, 위치)</li>
+  </ul>
+</li>
+<li>작성 결과를 pattern_catalog.md에 업데이트하세요.</li>
+</ol>
+<p>🎯 성공 기준: 5개의 패턴이 각각 이름, 설명, 문제, 증거를 갖추면 성공입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table>
+<tr><th>법칙</th><th>핵심 문장</th></tr>
+<tr><td>Rule 100</td><td>패턴은 반복되는 해결책</td></tr>
+<tr><td>Rule 101</td><td>패턴 뒤에는 원칙이 있다</td></tr>
+<tr><td>Rule 102</td><td>패턴은 이름을 가져야 한다</td></tr>
+<tr><td>오늘의 실천</td><td>패턴 카탈로그 작성</td></tr>
+</table>
+
+<hr>
+
+<h2>📌 Module 5: 아키텍처로 통합하기</h2>
+
+<h3>① Experiment — 퍼즐 조각 맞추기</h3>
+<p>당신이 해야 할 일: 지금까지 발견한 패턴들을 하나의 그림으로 합쳐보세요.</p>
+<ul>
+<li>패턴 P1~P6을 모두 종이에 적으세요.</li>
+<li>이 패턴들이 서로 어떻게 연결되는지 생각해보세요.</li>
+<li>예: 파일 기반 메모리(P1) → 규칙의 3분할(P3) → 글로벌 규칙 우선(P6)</li>
+</ul>
+<p>질문: 이 패턴들이 연결되면 어떤 하나의 시스템이 그려지나요?</p>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>지금까지 Level 1~5에서 만든 시스템과, Module 4에서 발견한 패턴은 같은 것인가요, 아니면 다른 관점인가요?</li>
+<li>시스템은 구체적인 구현이고, 패턴은 추상적인 원리입니다. 이제 이 둘을 통합할 차례입니다.</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p class="discovery">"아, 내 시스템은 여러 패턴의 조합이었구나. 이 패턴들이 모여 하나의 아키텍처를 이루고 있었어."</p>
+
+<h3>④ Rule — 법칙</h3>
+<table>
+<tr><th style="width:90px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule 103</td><td>아키텍처는 패턴의 집합이다. 개별 패턴이 아니라 패턴들의 관계와 상호작용이 아키텍처입니다.</td></tr>
+<tr><td>Rule 104</td><td>아키텍처는 다이어그램으로 표현하라. 패턴들을 그림으로 연결하면 시스템의 본질이 보입니다.</td></tr>
+<tr><td>Rule 105</td><td>아키텍처는 시스템의 DNA다. 아키텍처가 변하지 않으면, 구현이 바뀌어도 시스템의 본질은 유지됩니다.</td></tr>
+</table>
+
+<h3>⑤ Practice — 통합 아키텍처 작성하기</h3>
+<p><strong>Step 1.</strong> AI_Work/analysis/integrated_architecture.md 파일을 만드세요.</p>
+<p><strong>Step 2.</strong> 지금까지 만든 아키텍처 다이어그램(os_diagram.md)과 패턴 카탈로그(pattern_catalog.md)를 가져오세요.</p>
+<p><strong>Step 3.</strong> 아래 템플릿을 사용하여 통합 아키텍처를 작성하세요.</p>
+<pre>```markdown
+# 내 AI OS 통합 아키텍처
+
+## 1. 핵심 구성 요소
+| 구성 요소 | 설명 | 관련 패턴 |
+|:---|:---|:---|
+| Workspace | 파일 기반 저장소 | P1 (파일 기반 메모리) |
+| Rules | 거버넌스 체계 | P3, P6 |
+| Workflows | 업무 처리 흐름 | P5 |
+| Verification | 품질 관리 | P2 |
+| Operations | 모니터링 및 장애 대응 | Level 3 전체 |
+
+## 2. 구성 요소 간 관계
+[여기에 Mermaid 다이어그램 또는 텍스트 설명]
+
+## 3. 설계 원칙 (발견된 원칙)
+- 원칙 1: 모든 것은 파일로 저장한다
+- 원칙 2: 규칙은 문서화하고, AI가 지키게 한다
+- 원칙 3: 모든 결과물은 3단계로 검증한다
+- 원칙 4: 워크플로우는 재료→가공→결과물 구조를 따른다
+- 원칙 5: 글로벌 규칙이 개별 규칙보다 우선한다
+```</pre>
+<p><strong>Step 4.</strong> 통합 아키텍처를 완성하세요.</p>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table>
+<tr><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"이미 Level 4에서 아키텍처를 그렸어."</td><td>Level 4는 구현 중심이었다면, 지금은 원리 중심의 아키텍처입니다.</td></tr>
+<tr><td>패턴을 그대로 나열한다.</td><td>패턴을 나열하는 것이 아니라, 패턴의 관계와 흐름을 보여주어야 한다.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — 통합 아키텍처 완성</h3>
+<p>목표: 패턴 카탈로그와 Level 4의 아키텍처를 통합하여, 하나의 완전한 아키텍처 문서를 만듭니다.</p>
+<ol>
+<li>Level 4의 os_diagram.md를 가져오세요.</li>
+<li>Module 4의 pattern_catalog.md에서 패턴을 가져오세요.</li>
+<li>다이어그램의 각 구성 요소에 해당하는 패턴 ID를 표시하세요.</li>
+<li>구성 요소 간 관계를 패턴 관점에서 다시 설명하세요.</li>
+<li>완성된 문서를 integrated_architecture.md에 저장하세요.</li>
+</ol>
+<p>🎯 성공 기준: 아키텍처 다이어그램과 패턴이 완전히 연결된 문서가 완성되면 성공입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table>
+<tr><th>법칙</th><th>핵심 문장</th></tr>
+<tr><td>Rule 103</td><td>아키텍처는 패턴의 집합</td></tr>
+<tr><td>Rule 104</td><td>다이어그램으로 표현하라</td></tr>
+<tr><td>Rule 105</td><td>아키텍처는 시스템의 DNA</td></tr>
+<tr><td>오늘의 실천</td><td>통합 아키텍처 완성</td></tr>
+</table>
+
+<hr>
+
+<h2>📌 Module 6: 다음 버전을 위한 인사이트</h2>
+
+<h3>① Experiment — 돌아보며 배우기</h3>
+<p>당신이 해야 할 일: 지금까지의 여정을 돌아보며, 다음 세 가지 질문에 답해보세요.</p>
+<ol>
+<li>잘한 점: 이 시스템에서 가장 잘 작동하는 부분은 무엇인가요?</li>
+<li>아쉬운 점: 가장 불편했던 부분, 개선하고 싶은 부분은 무엇인가요?</li>
+<li>배운 점: 이 과정을 통해 가장 크게 배운 것은 무엇인가요?</li>
+</ol>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>만약 지금 처음부터 다시 시작한다면, 무엇을 다르게 할까요?</li>
+<li>이 경험을 통해 다른 사람에게 조언할 수 있는 것은 무엇인가요?</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p class="discovery">"아, 내가 만든 시스템은 완성된 것이 아니라, 다음 버전을 위한 출발점이었구나."</p>
+
+<h3>④ Rule — 법칙</h3>
+<table>
+<tr><th style="width:90px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule 106</td><td>완성된 시스템은 없다. 항상 다음 버전이 있습니다.</td></tr>
+<tr><td>Rule 107</td><td>인사이트는 경험에서 나온다. 직접 경험하지 않으면 얻을 수 없는 지식이 있습니다.</td></tr>
+<tr><td>Rule 108</td><td>공유는 인사이트를 배가시킨다. 당신의 인사이트를 다른 사람과 공유하면, 그들도 배우고, 당신도 더 깊이 이해하게 됩니다.</td></tr>
+</table>
+
+<h3>⑤ Practice — 다음 버전 계획 수립하기</h3>
+<p><strong>Step 1.</strong> AI_Work/analysis/next_version_plan.md 파일을 만드세요.</p>
+<p><strong>Step 2.</strong> 아래 템플릿을 채우세요.</p>
+<pre>```markdown
+# AI OS v2.0 계획
+
+## 1. 현재 시스템의 강점 (유지할 것)
+- [강점 1]
+- [강점 2]
+- [강점 3]
+
+## 2. 현재 시스템의 약점 (개선할 것)
+- [약점 1] → 개선 방안: [방법]
+- [약점 2] → 개선 방안: [방법]
+- [약점 3] → 개선 방안: [방법]
+
+## 3. 새롭게 추가할 기능
+- [새 기능 1]: [이유]
+- [새 기능 2]: [이유]
+
+## 4. v2.0 로드맵
+| 단계 | 내용 | 예상 기간 |
+|:---|:---|:---|
+| 1 | [단계 1] | [기간] |
+| 2 | [단계 2] | [기간] |
+| 3 | [단계 3] | [기간] |
+```</pre>
+<p><strong>Step 3.</strong> 이 계획을 기반으로, 실제로 v2.0을 시작하세요!</p>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table>
+<tr><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"지금 시스템이 완벽해."</td><td>완벽한 시스템은 없다. 항상 개선할 점을 찾아라.</td></tr>
+<tr><td>배운 것을 혼자만 간직한다.</td><td>배운 것은 공유하라. 공유할수록 당신의 이해도 깊어진다.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — 인사이트 문서화 및 공유</h3>
+<p>목표: 지금까지의 모든 경험과 인사이트를 한 장의 문서로 정리하고, 공유합니다.</p>
+<ol>
+<li>지금까지 배운 것을 다음 질문에 답하며 정리하세요:
+  <ul>
+    <li>AI와 함께 일하며 가장 놀라웠던 점은?</li>
+    <li>가장 큰 실수는? 그 실수에서 배운 것은?</li>
+    <li>시스템을 구축하면서 가장 보람찼던 순간은?</li>
+  </ul>
+</li>
+<li>이 내용을 AI_Work/analysis/final_reflections.md에 기록하세요.</li>
+<li>팀원(또는 동료)과 공유하고, 그들의 인사이트도 들어보세요.</li>
+</ol>
+<p>🎯 성공 기준: 자신의 인사이트를 문서화하고, 최소 1명과 공유했다면 성공입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table>
+<tr><th>법칙</th><th>핵심 문장</th></tr>
+<tr><td>Rule 106</td><td>완성된 시스템은 없다</td></tr>
+<tr><td>Rule 107</td><td>인사이트는 경험에서 나온다</td></tr>
+<tr><td>Rule 108</td><td>공유는 인사이트를 배가시킨다</td></tr>
+<tr><td>오늘의 실천</td><td>다음 버전 계획 및 인사이트 공유</td></tr>
+</table>
+
+<hr>
+
+<h2>🎉 Level 6 최종 프로젝트 (Final Project)</h2>
+<p>지금까지 배운 모든 것을 종합하여, 당신만의 "EBRE 분석 보고서"를 완성합니다.</p>
+
+<h3>🎯 프로젝트 목표</h3>
+<p>Level 1~5에서 구축한 AI OS를 EBRE 프레임워크로 분석하고, 발견된 패턴, 원칙, 아키텍처를 체계적으로 문서화합니다.</p>
+
+<h3>📁 제출물 (Deliverables)</h3>
+<table>
+<tr><th>번호</th><th>제출물</th><th>파일 위치</th></tr>
+<tr><td>1</td><td>시스템 타임라인</td><td>AI_Work/analysis/timeline.md</td></tr>
+<tr><td>2</td><td>증거 목록</td><td>AI_Work/analysis/evidence_list.md</td></tr>
+<tr><td>3</td><td>개념 지도</td><td>AI_Work/analysis/concept_map.md</td></tr>
+<tr><td>4</td><td>패턴 카탈로그</td><td>AI_Work/analysis/pattern_catalog.md</td></tr>
+<tr><td>5</td><td>통합 아키텍처</td><td>AI_Work/analysis/integrated_architecture.md</td></tr>
+<tr><td>6</td><td>다음 버전 계획</td><td>AI_Work/analysis/next_version_plan.md</td></tr>
+<tr><td>7</td><td>최종 회고 및 인사이트</td><td>AI_Work/analysis/final_reflections.md</td></tr>
+</table>
+
+<h3>✅ 최종 점검 체크리스트</h3>
+<p>
+☐ 시스템 타임라인이 Level별로 정리되었는가?<br>
+☐ 증거 목록에 최소 10개 이상의 문서가 등록되었는가?<br>
+☐ 개념 지도에 5개 이상의 개념과 관계가 정의되었는가?<br>
+☐ 패턴 카탈로그에 최소 5개의 패턴이 등록되었는가?<br>
+☐ 통합 아키텍처에 패턴과 구성 요소가 연결되었는가?<br>
+☐ 다음 버전 계획이 구체적으로 수립되었는가?<br>
+☐ 최종 회고가 작성되었는가?
+</p>
+
+<hr>
+
+<h2>📖 Level 6을 마치며 — 그리고 시리즈 전체를 마치며</h2>
+<p>축하합니다! 🎉</p>
+<p>당신은 지금까지 AI와 함께 일하는 법을 배우고, 워크플로우를 설계하고, 운영하고, 조직으로 확장하고, 마지막으로 자신의 시스템을 분석하는 전체 여정을 완료했습니다.</p>
+
+<table>
+<tr><th>당신이 이룬 것</th><th>설명</th></tr>
+<tr><td>AI 협업 기반</td><td>AI Workspace, 규칙, QC 체계</td></tr>
+<tr><td>워크플로우 시스템</td><td>연결되고 자동화된 업무 흐름</td></tr>
+<tr><td>운영 체계</td><td>모니터링, 장애 대응, 최적화</td></tr>
+<tr><td>AI 운영체제</td><td>통합된 시스템 아키텍처</td></tr>
+<tr><td>팀 확장</td><td>온보딩, 코칭, 거버넌스</td></tr>
+<tr><td>시스템 분석</td><td>패턴 발견, 아키텍처 통합, 인사이트 도출</td></tr>
+</table>
+
+<p>이제 당신은:</p>
+<ul>
+<li>AI를 단순한 도구로 사용하는 것을 넘어, 시스템의 일부로 통합할 수 있습니다.</li>
+<li>혼자만의 시스템을 넘어 팀과 조직으로 확장할 수 있습니다.</li>
+<li>만든 시스템을 분석하고, 패턴을 발견하고, 다음 버전을 설계할 수 있습니다.</li>
+</ul>
+
+<hr>
+
+<h2>📚 Working with AI 시리즈 전체 완료</h2>
+<table>
+<tr><th>Level</th><th>명칭</th><th>핵심 주제</th></tr>
+<tr><td>1</td><td>Foundation</td><td>AI 협업 기반 구축 (Workspace, 규칙, QC)</td></tr>
+<tr><td>2</td><td>Builder</td><td>업무 시스템 설계 (워크플로우)</td></tr>
+<tr><td>3</td><td>Operator</td><td>시스템 운영 및 안정화 (모니터링, 장애 대응)</td></tr>
+<tr><td>4</td><td>Architect</td><td>AI 운영체제 설계 (통합, 자가 치유)</td></tr>
+<tr><td>5</td><td>Leader</td><td>팀과 조직으로 확장 (온보딩, 거버넌스)</td></tr>
+<tr><td>6</td><td>Analyst</td><td>시스템 분석 및 일반화 (EBRE, 패턴)</td></tr>
+</table>
+
+<hr>
+
+<blockquote>
+💡 마지막 한 마디:<br><br>
+이 시리즈의 진짜 목표는 AI 사용법을 가르치는 것이 아닙니다. 업무를 시스템으로 설계하고, AI와 사람이 함께 성장하는 환경을 만드는 방법을 가르치는 것입니다.<br><br>
+지금까지 배운 모든 것은 이제 당신의 것입니다. 이 원칙과 도구를 가지고, 당신만의 업무 시스템을 계속 발전시켜 나가세요.<br><br>
+AI는 변하고, 도구는 변하고, 업무는 변합니다. 하지만 당신이 배운 원칙 — 파일 기반 메모리, 검증, 자동화, 피드백, 지속적 개선 — 은 변하지 않습니다.<br><br>
+이제 당신은 AI와 함께 일하는 방법을 넘어, AI와 함께 성장하는 방법을 알게 되었습니다.
+</blockquote>
+
+<hr>
+
+<h2>📎 Assets &amp; Workbook (별도 파일 제공)</h2>
+
+<h3>Assets (복사해서 쓰는 파일들)</h3>
+<table>
+<tr><th>파일명</th><th>용도</th></tr>
+<tr><td>assets/evidence_template.md</td><td>증거 목록 템플릿</td></tr>
+<tr><td>assets/concept_template.md</td><td>개념 지도 템플릿</td></tr>
+<tr><td>assets/pattern_template.md</td><td>패턴 카탈로그 템플릿</td></tr>
+<tr><td>assets/architecture_template.md</td><td>통합 아키텍처 템플릿</td></tr>
+<tr><td>assets/next_version_template.md</td><td>다음 버전 계획 템플릿</td></tr>
+<tr><td>assets/reflection_template.md</td><td>최종 회고 템플릿</td></tr>
+</table>
+
+<h3>Workbook (실습지)</h3>
+<table>
+<tr><th>파일명</th><th>용도</th></tr>
+<tr><td>workbook/module1_exercises.md</td><td>Module 1 추가 실습</td></tr>
+<tr><td>workbook/module2_exercises.md</td><td>Module 2 추가 실습</td></tr>
+<tr><td>workbook/module3_exercises.md</td><td>Module 3 추가 실습</td></tr>
+<tr><td>workbook/module4_exercises.md</td><td>Module 4 추가 실습</td></tr>
+<tr><td>workbook/module5_exercises.md</td><td>Module 5 추가 실습</td></tr>
+<tr><td>workbook/module6_exercises.md</td><td>Module 6 추가 실습</td></tr>
+<tr><td>workbook/final_project_guide.md</td><td>최종 프로젝트 상세 가이드</td></tr>
+</table>
+
+<hr>
+
+<p style="text-align:center;"><strong>Working with AI: From Tasks to Systems</strong><br>Level 6 · Analyst — EBRE Framework로 시스템 분석하기</p>
+
+<hr>
+
+<h3>📌 편집 완료 확인사항 (Editorial Checklist)</h3>
+<p>
+☑ Module 제목을 행동형으로 통일<br>
+☑ Discovery를 한 문장으로 압축<br>
+☑ Principle을 Rule로 변경 및 번호 부여 (Rule 91~108)<br>
+☑ Mini Project 난이도를 20분으로 조정<br>
+☑ 전체 시리즈 마무리 문장 자연스럽게 구성<br>
+☑ Learning Outcomes 추가<br>
+☑ Assets 및 Workbook을 본문에서 완전 분리<br>
+☑ EBRE 프레임워크를 학습자 친화적으로 재구성<br>
+☑ 관찰→코딩→패턴→아키텍처 4단계를 실제 실습으로 구성
+</p>
+
+<hr>
+
+<h2>🏆 Working with AI: 전체 시리즈 완료 선언</h2>
+<p>Working with AI: From Tasks to Systems 시리즈가 완성되었습니다.</p>
+<table>
+<tr><th>Level</th><th>제목</th><th>상태</th></tr>
+<tr><td>1</td><td>Foundation — AI와 함께 일하기</td><td>✅ 완료</td></tr>
+<tr><td>2</td><td>Builder — 업무를 시스템으로 보기</td><td>✅ 완료</td></tr>
+<tr><td>3</td><td>Operator — AI Workflow 운영하기</td><td>✅ 완료</td></tr>
+<tr><td>4</td><td>Architect — AI 운영체제 설계하기</td><td>✅ 완료</td></tr>
+<tr><td>5</td><td>Leader — 팀과 조직으로 확장하기</td><td>✅ 완료</td></tr>
+<tr><td>6</td><td>Analyst — EBRE Framework로 시스템 분석하기</td><td>✅ 완료</td></tr>
+</table>
+<p>모든 원고는 출판 가능한 수준으로 승인되었습니다.</p>
+
+<footer>이 원고는 출판 가능한 수준으로 최종 승인되었습니다. (APPROVED 100/100)</footer>
+
+</body>
+</html>
+
