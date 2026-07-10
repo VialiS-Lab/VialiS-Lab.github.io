@@ -24,6 +24,23 @@
     --sans: 'Noto Sans KR', -apple-system, 'Malgun Gothic', sans-serif;
     --mono: 'IBM Plex Mono', ui-monospace, monospace;
   }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#161A18;
+      --paper-raised:#1D2220;
+      --ink:#EDEAE2;
+      --line:#33372F;
+      --line-strong:#454A40;
+      --jade:#5FA894;
+      --jade-dim:#4c8a78;
+      --gold:#D6A84A;
+      --muted:#9A968A;
+    }
+    .skeleton{
+      background:linear-gradient(90deg, #23271f 0%, #2b2f26 50%, #23271f 100%);
+      background-size:200% 100%;
+    }
+  }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
@@ -349,6 +366,27 @@
     return subtitle.replace(/^\s*level\s*\d+\s*[·:\-–]\s*/i, '').trim();
   }
 
+  // 선택적 YAML front-matter 파싱: 파일 맨 앞이 '---'로 시작하면
+  // 그 블록 안의 title/level/duration/summary 키만 가볍게 읽는다.
+  // (전체 YAML 스펙을 지원하지 않는 최소 파서 — 값에 콜론이 없는
+  // 단순 key: value 라인만 처리)
+  function parseFrontMatter(raw){
+    if(!raw.startsWith('---')) return null;
+    const end = raw.indexOf('\n---', 3);
+    if(end === -1) return null;
+    const block = raw.slice(3, end).trim();
+    const data = {};
+    block.split('\n').forEach(line => {
+      const m = line.match(/^([a-zA-Z_]+)\s*:\s*(.+)$/);
+      if(!m) return;
+      const key = m[1].trim().toLowerCase();
+      let val = m[2].trim();
+      if(/^".*"$/.test(val) || /^'.*'$/.test(val)) val = val.slice(1, -1);
+      data[key] = val;
+    });
+    return data;
+  }
+
   async function fetchModuleMeta(item){
     // item: { name, download_url, html_url, path }
     const meta = {
@@ -358,29 +396,43 @@
       title: item.name.replace(/\.html?$/i, '').replace(/[_\-]+/g, ' '),
       subtitle: '',
       desc: '',
+      duration: '',
       level: extractLevel(item.name)
     };
     try{
       const res = await fetch(item.download_url);
       if(!res.ok) throw new Error('raw fetch failed');
-      const html = await res.text();
-      const doc = new DOMParser().parseFromString(html, 'text/html');
+      const raw = await res.text();
 
+      // 1순위: front-matter가 있으면 그것을 신뢰
+      const fm = parseFrontMatter(raw);
+      if(fm){
+        if(fm.title) meta.title = fm.title;
+        if(fm.summary) meta.desc = fm.summary;
+        if(fm.duration) meta.duration = fm.duration;
+        if(fm.level && !isNaN(parseInt(fm.level, 10))) meta.level = parseInt(fm.level, 10);
+      }
+
+      // 2순위: front-matter가 없거나 일부만 있으면 본문 스캐닝으로 보완
+      const doc = new DOMParser().parseFromString(raw, 'text/html');
       const titleEl = doc.querySelector('title');
-      if(titleEl && titleEl.textContent.trim()) meta.title = titleEl.textContent.trim();
-
       const descMeta = doc.querySelector('meta[name="description"]');
       const h2 = doc.querySelector('h2');
       const firstP = doc.querySelector('p');
 
+      if(!fm?.title && titleEl && titleEl.textContent.trim()){
+        meta.title = titleEl.textContent.trim();
+      }
       if(h2 && h2.textContent.trim()){
         meta.subtitle = h2.textContent.trim();
         if(meta.level === null) meta.level = extractLevel(meta.subtitle);
       }
-      if(descMeta && descMeta.getAttribute('content')){
-        meta.desc = descMeta.getAttribute('content').trim();
-      } else if(firstP && firstP.textContent.trim()){
-        meta.desc = firstP.textContent.trim().slice(0, 110);
+      if(!meta.desc){
+        if(descMeta && descMeta.getAttribute('content')){
+          meta.desc = descMeta.getAttribute('content').trim();
+        } else if(firstP && firstP.textContent.trim()){
+          meta.desc = firstP.textContent.trim().slice(0, 110);
+        }
       }
     }catch(e){
       // 원문 파싱 실패해도 파일명만으로 카드는 계속 노출
@@ -416,7 +468,7 @@
             ${subtitle ? `<p class="card-desc"><em>${escapeHtml(subtitle)}</em></p>` : ''}
             ${e.desc ? `<p class="card-desc">${escapeHtml(e.desc)}${e.desc.length >= 110 ? '…' : ''}</p>` : ''}
             <div class="card-foot">
-              <span>${escapeHtml(e.file)}</span>
+              <span>${escapeHtml(e.file)}${e.duration ? ` · 약 ${escapeHtml(e.duration)}` : ''}</span>
               <span class="go">열어보기 →</span>
             </div>
           </a>
