@@ -99,6 +99,198 @@
   }
   .meta-pill strong{color:var(--ink);font-weight:600;}
 
+  /* ---------- pipeline diagram ---------- */
+  .pipeline-section{
+    max-width:920px;
+    margin:0 auto;
+    padding:32px 24px 8px;
+  }
+  .section-heading{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:16px;
+    color:var(--ink);
+    margin:0 0 4px;
+  }
+  .section-sub{
+    font-size:13px;
+    color:var(--muted);
+    margin:0 0 16px;
+  }
+  .pipeline{
+    display:flex;
+    align-items:stretch;
+    gap:0;
+    overflow-x:auto;
+    padding-bottom:6px;
+  }
+  .pipeline-node{
+    flex:1 1 0;
+    min-width:108px;
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-top:3px solid var(--jade);
+    border-radius:var(--radius);
+    padding:12px 10px;
+    text-align:center;
+  }
+  .pipeline-node.io{
+    border-top-color:var(--gold);
+    background:transparent;
+    border-style:dashed;
+  }
+  .pipeline-node .fw{
+    font-family:var(--mono);
+    font-size:10.5px;
+    color:var(--gold);
+    display:block;
+    margin-bottom:4px;
+  }
+  .pipeline-node .name{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:13.5px;
+    color:var(--ink);
+  }
+  .pipeline-arrow{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:28px;
+    color:var(--line-strong);
+    font-size:16px;
+  }
+  @media (max-width:700px){
+    .pipeline{flex-direction:column;}
+    .pipeline-arrow{width:auto; height:20px; transform:rotate(90deg);}
+    .pipeline-node{min-width:0;}
+  }
+
+  /* ---------- series hub ---------- */
+  .hub-section{
+    max-width:920px;
+    margin:0 auto;
+    padding:28px 24px 8px;
+  }
+  .hub-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));
+    gap:14px;
+  }
+  a.hub-card{
+    display:block;
+    text-decoration:none;
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:16px 18px;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  a.hub-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px -10px rgba(30,36,32,.22);
+    border-color:var(--jade);
+  }
+  a.hub-card:focus-visible{outline:2px solid var(--jade); outline-offset:2px;}
+  .hub-card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:8px;
+    margin-bottom:6px;
+  }
+  .hub-card-name{
+    font-family:var(--serif);
+    font-weight:600;
+    font-size:16px;
+    color:var(--ink);
+  }
+  .hub-badge{
+    flex:0 0 auto;
+    font-family:var(--mono);
+    font-size:10.5px;
+    padding:3px 8px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+  .hub-badge.complete{background:rgba(43,106,92,.12); color:var(--jade);}
+  .hub-badge.partial{background:rgba(185,134,46,.14); color:var(--gold);}
+  .hub-card-fw{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--gold);
+    margin-bottom:8px;
+  }
+  .hub-card-desc{
+    font-size:13px;
+    color:var(--muted);
+    margin-bottom:10px;
+    min-height:34px;
+  }
+  .hub-card-progress-row{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .hub-progress-track{
+    flex:1;
+    height:5px;
+    background:var(--line);
+    border-radius:99px;
+    overflow:hidden;
+  }
+  .hub-progress-fill{
+    height:100%;
+    background:var(--jade);
+    border-radius:99px;
+  }
+  .hub-progress-label{
+    font-family:var(--mono);
+    font-size:11px;
+    color:var(--muted);
+    flex:0 0 auto;
+  }
+
+  /* ---------- framework index ---------- */
+  .fw-section{
+    max-width:920px;
+    margin:0 auto;
+    padding:28px 24px 8px;
+  }
+  table.fw-table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:13.5px;
+  }
+  table.fw-table th{
+    text-align:left;
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--muted);
+    padding:6px 10px 8px;
+    border-bottom:1px solid var(--line-strong);
+  }
+  table.fw-table td{
+    padding:9px 10px;
+    border-bottom:1px solid var(--line);
+    vertical-align:top;
+  }
+  table.fw-table tr:last-child td{border-bottom:none;}
+  table.fw-table .fw-name{
+    font-family:var(--mono);
+    font-weight:600;
+    color:var(--jade);
+    white-space:nowrap;
+  }
+  table.fw-table .series-name{
+    font-family:var(--serif);
+    font-weight:600;
+    white-space:nowrap;
+  }
+
   /* ---------- search ---------- */
   .toolbar{
     max-width:920px;
@@ -344,11 +536,55 @@
   </div>
 </header>
 
+<section class="pipeline-section">
+  <p class="section-heading">🔗 통합 파이프라인</p>
+  <p class="section-sub">다섯 시리즈는 독립적인 교재가 아니라, 하나의 결과물이 다음 시리즈의 재료가 되는 연결된 시스템입니다.</p>
+  <div class="pipeline">
+    <div class="pipeline-node io"><span class="name">Input</span></div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-node"><span class="fw">AI OS · EBRE</span><span class="name">Working</span></div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-node"><span class="fw">QHER</span><span class="name">Thinking</span></div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-node"><span class="fw">K-OS</span><span class="name">Knowledge</span></div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-node"><span class="fw">L.E.A.R.N.</span><span class="name">Learning</span></div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-node"><span class="fw">C.E.N.G.I.N.E.</span><span class="name">Cognitive Eng.</span></div>
+    <div class="pipeline-arrow">→</div>
+    <div class="pipeline-node io"><span class="name">Output</span></div>
+  </div>
+</section>
+
+<section class="hub-section">
+  <p class="section-heading">📚 시리즈 허브</p>
+  <p class="section-sub">시리즈를 선택하면 아래 상세 목록의 해당 위치로 이동합니다.</p>
+  <div class="hub-grid" id="hubGrid">
+    <div class="skeleton" style="height:120px;"></div>
+    <div class="skeleton" style="height:120px;"></div>
+  </div>
+</section>
+
+<section class="fw-section">
+  <p class="section-heading">🧩 프레임워크 색인</p>
+  <p class="section-sub">각 시리즈가 정의하는 고유 프레임워크입니다.</p>
+  <table class="fw-table">
+    <tr><th>시리즈</th><th>프레임워크</th><th>한 줄 설명</th></tr>
+    <tr><td class="series-name">Working with AI</td><td class="fw-name">AI OS · EBRE</td><td>파일 기반 업무 시스템 구축 + 증거 기반 역공학으로 패턴 분석</td></tr>
+    <tr><td class="series-name">Thinking with AI</td><td class="fw-name">QHER Engine</td><td>Question→Hypothesis→Evidence→Reasoning 사고 파이프라인, EQI·Reasoning Audit 포함</td></tr>
+    <tr><td class="series-name">Knowledge with AI</td><td class="fw-name">K-OS Engine</td><td>정보를 지식으로 전환하는 8단계 Lifecycle, Knowledge Graph·Evolution 포함</td></tr>
+    <tr><td class="series-name">Learning with AI</td><td class="fw-name">L.E.A.R.N. Engine</td><td>인지과학 기반 학습(Acquire→Retrieve→Apply→Reflect), Spaced Repetition 포함</td></tr>
+    <tr><td class="series-name">Cognitive Engineering with AI</td><td class="fw-name">C.E.N.G.I.N.E. + MIDAR</td><td>6개 설계 차원 + 메타 인지 제어 루프로 인간-AI 통합 시스템 설계</td></tr>
+  </table>
+</section>
+
 <div class="toolbar">
   <input id="searchInput" type="text" placeholder="모듈 제목으로 검색…" autocomplete="off">
 </div>
 
 <main>
+  <p class="section-heading" style="margin-bottom:2px;">📖 전체 모듈 목록</p>
+  <p class="section-sub">시리즈별 상세 모듈입니다.</p>
   <div class="spine" id="listRoot">
     <div class="skeleton"></div>
     <div class="skeleton"></div>
@@ -376,6 +612,7 @@
   const countPill  = document.getElementById('countPill');
   const updatedPill= document.getElementById('updatedPill');
   const searchInput= document.getElementById('searchInput');
+  const hubGrid    = document.getElementById('hubGrid');
 
   let allEntries = [];
 
@@ -436,13 +673,42 @@
     'Cognitive Engineering with AI'
   ];
 
-  const SERIES_TAGLINE = {
-    'Working with AI': '업무 시스템 — AI OS, EBRE',
-    'Thinking with AI': '사고 시스템 — QHER Engine',
-    'Knowledge with AI': '지식 시스템 — PKM + AI',
-    'Learning with AI': '학습 시스템 — AI + Learning Science',
-    'Cognitive Engineering with AI': '인지 시스템 — 인지 과학 + AI'
+  const SERIES_META = {
+    'Working with AI': {
+      framework: 'AI OS · EBRE',
+      tagline: '업무 시스템 — AI OS, EBRE',
+      desc: '파일 기반 AI 업무 시스템을 만들고, 증거 기반 역공학으로 자신의 시스템을 분석합니다.',
+      expected: 6
+    },
+    'Thinking with AI': {
+      framework: 'QHER Engine',
+      tagline: '사고 시스템 — QHER Engine',
+      desc: '질문·가설·증거·추론(QHER)으로 AI와 함께 체계적으로 사고하는 법을 배웁니다.',
+      expected: 6
+    },
+    'Knowledge with AI': {
+      framework: 'K-OS Engine',
+      tagline: '지식 시스템 — K-OS Engine',
+      desc: '정보를 지식으로 전환하는 8단계 Lifecycle과 Knowledge Graph를 구축합니다.',
+      expected: 6
+    },
+    'Learning with AI': {
+      framework: 'L.E.A.R.N. Engine',
+      tagline: '학습 시스템 — L.E.A.R.N. Engine',
+      desc: '인지과학 기반 학습 사이클과 Spaced Repetition으로 AI와 함께 성장합니다.',
+      expected: 6
+    },
+    'Cognitive Engineering with AI': {
+      framework: 'C.E.N.G.I.N.E. + MIDAR',
+      tagline: '인지 시스템 — C.E.N.G.I.N.E. + MIDAR',
+      desc: '6개 설계 차원과 메타 인지 제어 루프로 인간-AI 통합 시스템을 설계합니다.',
+      expected: 6
+    }
   };
+  // 하위 호환: 기존 코드에서 참조하는 taglin 접근자
+  const SERIES_TAGLINE = Object.fromEntries(
+    Object.entries(SERIES_META).map(([k, v]) => [k, v.tagline])
+  );
 
   function seriesRank(name){
     const i = SERIES_ORDER.indexOf(name);
@@ -506,6 +772,10 @@
     return meta;
   }
 
+  function seriesSlug(name){
+    return 'series-' + name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+  }
+
   function groupBySeries(entries){
     const groups = new Map();
     entries.forEach(e => {
@@ -517,6 +787,35 @@
       const r = seriesRank(a[0]) - seriesRank(b[0]);
       return r !== 0 ? r : a[0].localeCompare(b[0], 'ko');
     });
+  }
+
+  function renderHub(entries){
+    if(!hubGrid) return;
+    if(entries.length === 0){
+      hubGrid.innerHTML = `<div class="state-box">아직 등록된 시리즈가 없습니다.</div>`;
+      return;
+    }
+    const groups = groupBySeries(entries);
+    hubGrid.innerHTML = groups.map(([seriesName, list]) => {
+      const meta = SERIES_META[seriesName] || {};
+      const expected = meta.expected || list.length;
+      const count = list.length;
+      const complete = count >= expected;
+      const pct = Math.min(100, Math.round((count / expected) * 100));
+      return `
+        <a class="hub-card" href="#${seriesSlug(seriesName)}">
+          <div class="hub-card-top">
+            <span class="hub-card-name">${escapeHtml(seriesName)}</span>
+            <span class="hub-badge ${complete ? 'complete' : 'partial'}">${complete ? '✅ 완료' : '진행 중'}</span>
+          </div>
+          <div class="hub-card-fw">${escapeHtml(meta.framework || '')}</div>
+          <p class="hub-card-desc">${escapeHtml(meta.desc || '')}</p>
+          <div class="hub-card-progress-row">
+            <div class="hub-progress-track"><div class="hub-progress-fill" style="width:${pct}%;"></div></div>
+            <span class="hub-progress-label">${count}/${expected}</span>
+          </div>
+        </a>`;
+    }).join('');
   }
 
   function render(entries, query){
@@ -562,7 +861,7 @@
       const tagline = SERIES_TAGLINE[seriesName] ? `<span class="series-tagline">${escapeHtml(SERIES_TAGLINE[seriesName])}</span>` : '';
 
       return `
-        <section class="series-group">
+        <section class="series-group" id="${seriesSlug(seriesName)}">
           <h2 class="series-title">${escapeHtml(seriesName)} <span class="series-count">${list.length}개</span></h2>
           ${tagline}
           <div class="spine">${cardsHtml}</div>
@@ -605,6 +904,7 @@
       countPill.textContent = allEntries.length;
       updatedPill.textContent = '세션 캐시에서 표시 중';
       render(allEntries);
+      renderHub(allEntries);
       return;
     }
 
@@ -616,6 +916,7 @@
           countPill.textContent = '0';
           updatedPill.textContent = 'modules 폴더 없음';
           render(allEntries);
+          renderHub(allEntries);
           return;
         }
         throw new Error(`GitHub API 응답 오류 (${listRes.status})`);
@@ -629,6 +930,7 @@
         countPill.textContent = '0';
         updatedPill.textContent = '자료 없음';
         render(allEntries);
+        renderHub(allEntries);
         return;
       }
 
@@ -647,8 +949,10 @@
       updatedPill.textContent = new Date().toLocaleDateString('ko-KR', { year:'numeric', month:'long', day:'numeric' }) + ' 기준';
       writeCache(allEntries);
       render(allEntries);
+      renderHub(allEntries);
     }catch(err){
       renderError(err.message || '알 수 없는 오류가 발생했습니다.');
+      if(hubGrid) hubGrid.innerHTML = `<div class="state-box">시리즈 정보를 불러오지 못했습니다.</div>`;
       countPill.textContent = '–';
       updatedPill.textContent = '불러오기 실패';
     }
