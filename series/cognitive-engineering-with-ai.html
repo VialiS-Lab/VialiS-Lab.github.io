@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cognitive Engineering with AI — VialiS Lab</title>
+<meta name="description" content="Cognitive Engineering with AI: C.E.N.G.I.N.E. + MIDAR 프레임워크로 인간-AI 통합 시스템을 설계하는 시리즈">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAF7F0; --paper-raised:#FFFFFF; --ink:#1E2420;
+    --line:#DCD6C8; --line-strong:#C7BFAE;
+    --jade:#2B6A5C; --jade-dim:#3f8272; --gold:#B9862E; --muted:#74716A;
+    --radius:4px;
+    --serif:'Noto Serif KR', serif; --sans:'Noto Sans KR', -apple-system, 'Malgun Gothic', sans-serif; --mono:'IBM Plex Mono', ui-monospace, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --paper:#161A18; --paper-raised:#1D2220; --ink:#EDEAE2;
+      --line:#33372F; --line-strong:#454A40;
+      --jade:#5FA894; --jade-dim:#4c8a78; --gold:#D6A84A; --muted:#9A968A;
+    }
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{background:var(--paper); color:var(--ink); font-family:var(--sans); line-height:1.65; -webkit-font-smoothing:antialiased;}
+  a{color:inherit;}
+  ::selection{background:var(--jade); color:#fff;}
+  .wrap{max-width:820px; margin:0 auto; padding:0 24px;}
+
+  .crumb{padding:22px 0 0; font-family:var(--mono); font-size:12px; color:var(--muted);}
+  .crumb a{color:var(--jade); text-decoration:none;}
+  .crumb a:hover{text-decoration:underline;}
+
+  header.hero{padding:20px 0 32px; border-bottom:1px solid var(--line);}
+  .phase-tag{font-family:var(--mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin:0 0 12px;}
+  h1.title{font-family:var(--serif); font-weight:700; font-size:clamp(26px,4vw,36px); margin:0 0 10px; letter-spacing:-.01em;}
+  p.fw-line{font-family:var(--mono); font-size:13px; color:var(--jade); margin:0 0 16px;}
+  p.overview{font-size:15px; color:var(--muted); max-width:64ch; margin:0;}
+
+  section{padding:30px 0;}
+  section + section{border-top:1px solid var(--line);}
+  .section-title{font-family:var(--serif); font-weight:600; font-size:18px; margin:0 0 14px;}
+
+  .fw-box{
+    background:var(--paper-raised); border:1px solid var(--line); border-left:3px solid var(--jade);
+    border-radius:var(--radius); padding:16px 20px;
+  }
+  .fw-box p{margin:0 0 10px; font-size:14px; color:var(--ink);}
+  .fw-box a{font-family:var(--mono); font-size:12.5px; color:var(--jade); text-decoration:none;}
+  .fw-box a:hover{color:var(--gold);}
+
+  /* accordion */
+  .accordion-item{border:1px solid var(--line); border-radius:var(--radius); margin-bottom:10px; background:var(--paper-raised); overflow:hidden;}
+  .accordion-head{
+    display:flex; align-items:center; gap:12px; padding:14px 16px; cursor:pointer;
+    -webkit-tap-highlight-color:transparent;
+  }
+  .accordion-head:hover{background:rgba(43,106,92,.04);}
+  .acc-tab{
+    font-family:var(--mono); font-size:11px; font-weight:600; color:#fff;
+    background:var(--jade); border-radius:3px; padding:3px 8px; flex:0 0 auto;
+  }
+  .acc-tab.unnumbered{background:var(--muted);}
+  .acc-title{font-family:var(--serif); font-weight:600; font-size:15.5px; flex:1;}
+  .acc-caret{font-family:var(--mono); color:var(--muted); transition:transform .15s ease; flex:0 0 auto;}
+  .accordion-item.open .acc-caret{transform:rotate(90deg);}
+  .accordion-body{
+    max-height:0; overflow:hidden; transition:max-height .2s ease;
+    padding:0 16px; font-size:13.5px; color:var(--muted);
+  }
+  .accordion-item.open .accordion-body{max-height:400px; padding:0 16px 16px;}
+  .accordion-body .desc{margin:0 0 10px;}
+  .accordion-body .go{
+    display:inline-block; font-family:var(--mono); font-size:12.5px; font-weight:600;
+    color:var(--jade); text-decoration:none; border:1px solid var(--line-strong); border-radius:999px; padding:6px 14px;
+  }
+  .accordion-body .go:hover{border-color:var(--jade); color:var(--gold);}
+  .state-box{
+    padding:30px 24px; border:1px dashed var(--line-strong); border-radius:var(--radius);
+    background:var(--paper-raised); text-align:center; color:var(--muted); font-size:14px;
+  }
+
+  .dl-row{display:flex; gap:12px; flex-wrap:wrap;}
+  a.dl-card{
+    flex:1 1 220px; text-decoration:none; background:var(--paper-raised); border:1px solid var(--line);
+    border-radius:var(--radius); padding:16px 18px; font-size:13.5px; color:var(--ink);
+  }
+  a.dl-card:hover{border-color:var(--jade);}
+  a.dl-card strong{display:block; font-family:var(--serif); margin-bottom:4px;}
+
+  footer.site{padding:30px 0 60px; font-family:var(--mono); font-size:12px; color:var(--muted); display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;}
+  footer.site a{color:var(--jade); text-decoration:none;}
+  footer.site a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <p class="crumb"><a href="../index.html">Home</a> / Cognitive Engineering with AI</p>
+
+  <header class="hero">
+    <p class="phase-tag">Phase 5</p>
+    <h1 class="title">Cognitive Engineering with AI</h1>
+    <p class="fw-line">Framework: C.E.N.G.I.N.E. + MIDAR</p>
+    <p class="overview">Context·Environment·Neuro-Adaptive·Governance·Interaction·Next-Gen 6개 설계 차원(C.E.N.G.I.N.E.)과, 이를 관장하는 MIDAR(Monitor·Interpret·Decide·Act·Review) 메타 인지 제어 루프로 인간-AI 통합 시스템을 설계합니다. 5부작 시리즈의 마지막 편입니다.</p>
+  </header>
+
+  <section>
+    <h2 class="section-title">🧩 Framework</h2>
+    <div class="fw-box">
+      <p><strong>C.E.N.G.I.N.E.</strong> — Context·Environment·Neuro-Adaptive·Governance·Interaction·Next-Gen 6대 설계 차원. <strong>MIDAR</strong> — Monitor·Interpret·Decide·Act·Review 메타 인지 제어 루프. CSH(Cognitive System Health)·HAIS(Human-AI Integration Score) 최상위 KPI, Adaptive Cognitive States, Policy Framework, Closed Human-AI Loop, KPI 기반 Self-Optimization을 포함합니다.</p>
+      <a href="../frameworks.html#cengine-midar">Frameworks 페이지에서 자세히 보기 →</a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">📖 6 Modules</h2>
+    <div id="moduleList">
+      <div class="state-box">모듈 목록을 불러오는 중…</div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">⬇️ Downloads</h2>
+    <div class="dl-row">
+      <a class="dl-card" href="https://github.com/VialiS-Lab/VialiS-Lab.github.io/tree/main/modules" target="_blank" rel="noopener">
+        <strong>GitHub에서 보기</strong>
+        모듈 원본 HTML 소스 및 커밋 이력
+      </a>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site">
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; width:100%;">
+    <span>© <span id="year"></span> VialiS Lab</span>
+    <a href="../index.html">← Home으로</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const SERIES_NAME = 'Cognitive Engineering with AI';
+  const OWNER = 'VialiS-Lab';
+  const REPO  = 'VialiS-Lab.github.io';
+  const DIR   = 'modules';
+
+  const listEl = document.getElementById('moduleList');
+
+  function escapeHtml(str){
+    return (str || '').replace(/[&<>"']/g, s => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[s]));
+  }
+  function extractLevel(text){
+    if(!text) return null;
+    const m = text.match(/level\s*(\d+)/i);
+    return m ? parseInt(m[1], 10) : null;
+  }
+  function inferSeriesFromTitle(title){
+    if(!title) return '기타';
+    const m = title.match(/^([^:：]+)[:：]/);
+    return m ? m[1].trim() : title.trim();
+  }
+  function parseFrontMatter(raw){
+    if(!raw.startsWith('---')) return null;
+    const end = raw.indexOf('\n---', 3);
+    if(end === -1) return null;
+    const block = raw.slice(3, end).trim();
+    const data = {};
+    block.split('\n').forEach(line => {
+      const m = line.match(/^([a-zA-Z_]+)\s*:\s*(.+)$/);
+      if(!m) return;
+      const key = m[1].trim().toLowerCase();
+      let val = m[2].trim();
+      if(/^".*"$/.test(val) || /^'.*'$/.test(val)) val = val.slice(1, -1);
+      data[key] = val;
+    });
+    return data;
+  }
+
+  async function fetchModuleMeta(item){
+    const meta = {
+      file: item.name, url: `../${DIR}/${item.name}`,
+      title: item.name.replace(/\.html?$/i, '').replace(/[_\-]+/g, ' '),
+      subtitle:'', desc:'', duration:'', series:null, level: extractLevel(item.name)
+    };
+    try{
+      const res = await fetch(item.download_url);
+      if(!res.ok) throw new Error('fetch failed');
+      const raw = await res.text();
+      const fm = parseFrontMatter(raw);
+      if(fm){
+        if(fm.title) meta.title = fm.title;
+        if(fm.summary) meta.desc = fm.summary;
+        if(fm.duration) meta.duration = fm.duration;
+        if(fm.series) meta.series = fm.series;
+        if(fm.level && !isNaN(parseInt(fm.level,10))) meta.level = parseInt(fm.level,10);
+      }
+      const doc = new DOMParser().parseFromString(raw, 'text/html');
+      const titleEl = doc.querySelector('title');
+      const descMeta = doc.querySelector('meta[name="description"]');
+      const h2 = doc.querySelector('h2');
+      const firstP = doc.querySelector('p');
+      if(!fm?.title && titleEl && titleEl.textContent.trim()) meta.title = titleEl.textContent.trim();
+      if(h2 && h2.textContent.trim()){
+        meta.subtitle = h2.textContent.trim();
+        if(meta.level === null) meta.level = extractLevel(meta.subtitle);
+      }
+      if(!meta.desc){
+        if(descMeta && descMeta.getAttribute('content')) meta.desc = descMeta.getAttribute('content').trim();
+        else if(firstP && firstP.textContent.trim()) meta.desc = firstP.textContent.trim().slice(0,110);
+      }
+    }catch(e){ /* 파일명만으로 계속 노출 */ }
+    if(!meta.series) meta.series = inferSeriesFromTitle(meta.title);
+    return meta;
+  }
+
+  function stripLevelPrefix(subtitle){
+    if(!subtitle) return '';
+    return subtitle.replace(/^\s*level\s*\d+\s*[·:\-–]\s*/i, '').trim();
+  }
+
+  function render(entries){
+    if(entries.length === 0){
+      listEl.innerHTML = `<div class="state-box">아직 등록된 모듈이 없습니다.</div>`;
+      return;
+    }
+    listEl.innerHTML = entries.map((e, i) => {
+      const tabLabel = e.level !== null ? `Lv.${String(e.level).padStart(2,'0')}` : '·';
+      const tabClass = e.level !== null ? '' : 'unnumbered';
+      const subtitle = stripLevelPrefix(e.subtitle) || e.subtitle;
+      return `
+        <div class="accordion-item" id="acc-${i}">
+          <div class="accordion-head" onclick="toggleAcc(${i})">
+            <span class="acc-tab ${tabClass}">${tabLabel}</span>
+            <span class="acc-title">${escapeHtml(e.title)}</span>
+            <span class="acc-caret">▶</span>
+          </div>
+          <div class="accordion-body">
+            ${subtitle ? `<p class="desc"><em>${escapeHtml(subtitle)}</em></p>` : ''}
+            ${e.desc ? `<p class="desc">${escapeHtml(e.desc)}${e.desc.length>=110?'…':''}${e.duration ? ` · 약 ${escapeHtml(e.duration)}` : ''}</p>` : ''}
+            <a class="go" href="${e.url}">모듈 열기 →</a>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  window.toggleAcc = function(i){
+    const el = document.getElementById('acc-'+i);
+    el.classList.toggle('open');
+  };
+
+  async function load(){
+    try{
+      const listRes = await fetch(`https://api.github.com/repos/${OWNER}/${REPO}/contents/${DIR}`, { headers:{'Accept':'application/vnd.github+json'} });
+      if(!listRes.ok) throw new Error(`API 오류 (${listRes.status})`);
+      const items = await listRes.json();
+      const htmlFiles = (Array.isArray(items)?items:[]).filter(it => it.type==='file' && /\.html?$/i.test(it.name));
+      const metas = await Promise.all(htmlFiles.map(fetchModuleMeta));
+      const mine = metas.filter(m => m.series === SERIES_NAME);
+      mine.sort((a,b) => {
+        if(a.level===null && b.level===null) return a.title.localeCompare(b.title,'ko');
+        if(a.level===null) return 1;
+        if(b.level===null) return -1;
+        return a.level - b.level;
+      });
+      render(mine);
+    }catch(err){
+      listEl.innerHTML = `<div class="state-box">모듈 목록을 불러오지 못했습니다. <a href="https://github.com/${OWNER}/${REPO}/tree/main/${DIR}" target="_blank" rel="noopener" style="color:var(--jade);">GitHub에서 직접 보기 ↗</a></div>`;
+    }
+  }
+
+  load();
+})();
+</script>
+
+</body>
+</html>
