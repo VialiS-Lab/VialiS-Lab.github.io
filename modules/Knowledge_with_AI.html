@@ -1,0 +1,864 @@
+---
+title: Knowledge with AI: From Information to Knowledge
+series: Knowledge with AI
+duration: 모듈당 30~40분
+summary: K-OS(Knowledge Operating System) 프레임워크로 정보를 지식으로 전환하고 관리하는 방법을 배우는 시리즈. EIQ, Knowledge Graph 심화(Hub·Bridge·Cluster), Knowledge Evolution, Health Check 지표를 포함합니다.
+---
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Knowledge with AI: From Information to Knowledge</title>
+<meta name="description" content="K-OS Engine — 정보를 지식으로 전환하는 8단계 Lifecycle 프레임워크. EIQ, Knowledge Graph, Knowledge Evolution, Health Check 포함.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body{font-family:'Malgun Gothic', sans-serif; font-size:15px; line-height:1.7; color:#222; max-width:900px; margin:0 auto; padding:0 20px;}
+  h1{font-size:26px; margin-bottom:4px;}
+  h2.subtitle{font-size:18px; color:#555; margin-top:0; font-weight:normal;}
+  h2{font-size:22px; margin-top:48px;}
+  h3{font-size:18px; margin-top:28px;}
+  table{border-collapse:collapse; width:100%; margin:14px 0;}
+  th,td{border:1px solid #ddd; padding:8px 10px; text-align:left; vertical-align:top;}
+  th{background:#f2f2f2;}
+  .discovery{font-style:italic; color:#333;}
+  pre{background:#f7f7f7; padding:12px; border:1px solid #ddd; overflow-x:auto; font-size:13px; white-space:pre; line-height:1.4;}
+  blockquote{border-left:4px solid #ccc; padding-left:14px; color:#555; margin:16px 0;}
+  footer{margin:60px 0 40px; text-align:center; color:#888; font-size:13px;}
+  hr{border:none; border-top:1px solid #ddd; margin:36px 0;}
+</style>
+</head>
+<body>
+
+<h1>Knowledge with AI: From Information to Knowledge</h1>
+<h2 class="subtitle">K-OS Engine — 지식 시스템</h2>
+
+<hr>
+
+<h2>📐 K-OS 프레임워크 (최종 정의)</h2>
+<p>K-OS는 Knowledge Operating System의 약자로, 정보를 지식으로 전환하고 관리하는 8단계 Lifecycle 기반 프레임워크입니다.</p>
+
+<pre>```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                      K-OS FRAMEWORK v2.0                                    │
+│                 Knowledge Operating System                                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  ┌───────────────────────────────────────────────────────────────────────┐ │
+│  │  Phase 1: Capture (정보 포착)                                         │ │
+│  │  → EIQ 적용 (출처·신선도·깊이·관련성·재사용성·참신성)                │ │
+│  └────────────────────────┬──────────────────────────────────────────────┘ │
+│                           ▼ (Auto-Rule 1: EIQ 3.0+만 통과)                  │
+│  ┌───────────────────────────────────────────────────────────────────────┐ │
+│  │  Phase 2: Validate (정보 검증)                                        │ │
+│  │  → 사실 확인, 출처 교차 검증, 논리적 일관성 점검                       │ │
+│  └────────────────────────┬──────────────────────────────────────────────┘ │
+│                           ▼ (Auto-Rule 2: 신뢰도 80%+만 통과)               │
+│  ┌───────────────────────────────────────────────────────────────────────┐ │
+│  │  Phase 3: Structure (정보 구조화)                                     │ │
+│  │  → PARA + MOC + 태그 시스템 적용                                      │ │
+│  └────────────────────────┬──────────────────────────────────────────────┘ │
+│                           ▼ (Auto-Rule 3: 구조화 완료 → 연결 탐색)          │
+│  ┌───────────────────────────────────────────────────────────────────────┐ │
+│  │  Phase 4: Connect (지식 연결)                                         │ │
+│  │  → Knowledge Graph 구축 (Hub·Bridge·Cluster 발견)                     │ │
+│  └────────────────────────┬──────────────────────────────────────────────┘ │
+│                           ▼ (Auto-Rule 4: 연결 강도 3+ → 재사용 제안)       │
+│  ┌───────────────────────────────────────────────────────────────────────┐ │
+│  │  Phase 5: Reuse (지식 재사용)                                         │ │
+│  │  → 합성(Synthesis), 적용(Application), 전이(Transfer)                 │ │
+│  └────────────────────────┬──────────────────────────────────────────────┘ │
+│                           ▼ (Auto-Rule 5: Reuse 발생 → Evolution 트리거)   │
+│  ┌───────────────────────────────────────────────────────────────────────┐ │
+│  │  Phase 6: Evolve (지식 진화)                                          │ │
+│  │  → Merge·Split·Replace·Fork·Refactor                                  │ │
+│  └────────────────────────┬──────────────────────────────────────────────┘ │
+│                           ▼ (Auto-Rule 6: 6개월 경과 → Archive/Retire 검토)│
+│  ┌───────────────────────────────────────────────────────────────────────┐ │
+│  │  Phase 7: Archive (지식 보관)                                         │ │
+│  │  → 관련성 낮아졌으나 가치 있는 지식은 보관                            │ │
+│  └────────────────────────┬──────────────────────────────────────────────┘ │
+│                           ▼ (Auto-Rule 7: 1년 미사용 → Retire 검토)        │
+│  ┌───────────────────────────────────────────────────────────────────────┐ │
+│  │  Phase 8: Retire (지식 은퇴)                                          │ │
+│  │  → 더 이상 유효하지 않은 지식은 시스템에서 제거                        │ │
+│  └───────────────────────────────────────────────────────────────────────┘ │
+│                                                                             │
+│  🔄 Knowledge Health Check (지식 건강 검진 - 분기별 실행)                  │
+│     → Knowledge Density, Reuse Rate, Growth Rate, Health Score 계산        │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```</pre>
+
+<hr>
+
+<h2>📚 전체 모듈 구성 (6 Modules)</h2>
+<table>
+<tr><th>Module</th><th>제목</th><th>K-OS 단계</th><th>핵심 산출물</th></tr>
+<tr><td>1</td><td>정보를 포착하고 검증하자</td><td>Capture + Validate</td><td>EIQ 점수가 적용된 검증된 정보 목록</td></tr>
+<tr><td>2</td><td>정보를 구조화하자</td><td>Structure</td><td>PARA + MOC + 태그 시스템</td></tr>
+<tr><td>3</td><td>지식을 연결하자 (Graph 심화)</td><td>Connect</td><td>Hub·Bridge·Cluster가 포함된 Knowledge Graph</td></tr>
+<tr><td>4</td><td>지식을 재사용하자</td><td>Reuse</td><td>합성 결과물 + 재사용 패턴</td></tr>
+<tr><td>5</td><td>지식을 진화시키자</td><td>Evolve</td><td>Merge/Split/Replace/Fork/Refactor 기록</td></tr>
+<tr><td>6</td><td>K-OS Engine 구축하기</td><td>Full Lifecycle</td><td>8단계 Lifecycle + Health Check 실행 가능한 엔진</td></tr>
+</table>
+
+<hr>
+
+<h2>🛠️ 도구: K-OS 고유 지표</h2>
+<p>K-OS는 지식 시스템의 상태를 평가하기 위해 4가지 고유 지표를 정의합니다.</p>
+
+<h3>1. Knowledge Density (지식 밀도)</h3>
+<pre>```
+Knowledge Density = (Total Connections) / (Total Nodes)
+```</pre>
+<table>
+<tr><th>값</th><th>의미</th></tr>
+<tr><td>0.0 ~ 1.0</td><td>지식이 고립되어 있음 (개선 필요)</td></tr>
+<tr><td>1.0 ~ 3.0</td><td>적절한 연결 수준</td></tr>
+<tr><td>3.0 ~ 5.0</td><td>높은 연결성 (생산적인 지식 네트워크)</td></tr>
+<tr><td>5.0+</td><td>매우 높은 연결성 (과밀 주의)</td></tr>
+</table>
+
+<h3>2. Knowledge Reuse Rate (지식 재사용률)</h3>
+<pre>```
+Reuse Rate = (Reused Knowledge Nodes) / (Total Knowledge Nodes) × 100
+```</pre>
+<table>
+<tr><th>값</th><th>의미</th></tr>
+<tr><td>0 ~ 20%</td><td>지식이 방치되고 있음</td></tr>
+<tr><td>20 ~ 50%</td><td>일부 지식이 활용 중</td></tr>
+<tr><td>50 ~ 80%</td><td>건강한 지식 시스템</td></tr>
+<tr><td>80%+</td><td>매우 활발한 지식 활용</td></tr>
+</table>
+
+<h3>3. Knowledge Growth Rate (지식 성장률)</h3>
+<pre>```
+Growth Rate = (New Nodes + New Connections) / (Previous Period) × 100
+```</pre>
+<table>
+<tr><th>값</th><th>의미</th></tr>
+<tr><td>0 ~ 10%</td><td>정체 상태</td></tr>
+<tr><td>10 ~ 30%</td><td>안정적 성장</td></tr>
+<tr><td>30 ~ 50%</td><td>빠른 성장</td></tr>
+<tr><td>50%+</td><td>폭발적 성장 (품질 관리 필요)</td></tr>
+</table>
+
+<h3>4. K-OS Health Score (종합 건강 지수)</h3>
+<pre>```
+Health Score = (Density × 0.3) + (Reuse Rate × 0.3) + (Growth Rate × 0.2) + (EIQ_Avg × 0.2)
+```</pre>
+<table>
+<tr><th>점수</th><th>등급</th><th>상태</th></tr>
+<tr><td>8.0 ~ 10.0</td><td>⭐⭐⭐⭐⭐</td><td>우수 (최적의 지식 시스템)</td></tr>
+<tr><td>6.0 ~ 7.9</td><td>⭐⭐⭐⭐</td><td>양호 (일부 개선 필요)</td></tr>
+<tr><td>4.0 ~ 5.9</td><td>⭐⭐⭐</td><td>보통 (개선 필요)</td></tr>
+<tr><td>2.0 ~ 3.9</td><td>⭐⭐</td><td>미흡 (대대적 개선 필요)</td></tr>
+<tr><td>0.0 ~ 1.9</td><td>⭐</td><td>위험 (시스템 재설계 필요)</td></tr>
+</table>
+
+<hr>
+
+<h2>🛠️ 도구: Knowledge Graph 심화</h2>
+<p>Knowledge Graph는 단순한 노드-엣지를 넘어, Hub·Bridge·Cluster·Mental Model을 발견하는 도구로 확장됩니다.</p>
+
+<h3>Knowledge Graph 구성 요소 (심화)</h3>
+<table>
+<tr><th>개념</th><th>정의</th><th>발견 방법</th></tr>
+<tr><td>Hub Node</td><td>연결이 5개 이상인 중심 노드</td><td>연결 수 계산</td></tr>
+<tr><td>Bridge Node</td><td>서로 다른 Cluster를 연결하는 노드</td><td>Cluster 간 연결 탐색</td></tr>
+<tr><td>Orphan Node</td><td>연결이 0개인 고립 노드</td><td>연결 수 0인 노드 식별</td></tr>
+<tr><td>Knowledge Cluster</td><td>밀접하게 연결된 노드 그룹</td><td>연결 밀도 기반 클러스터링</td></tr>
+<tr><td>Knowledge Path</td><td>한 노드에서 다른 노드로 가는 경로</td><td>최단 경로 탐색</td></tr>
+<tr><td>Mental Model</td><td>여러 Cluster를 아우르는 상위 패턴</td><td>Cluster 간 관계의 상위 추상화</td></tr>
+</table>
+
+<h3>Knowledge Graph 심화 템플릿</h3>
+<pre>```markdown
+# Knowledge Graph 심화 분석: [주제명]
+
+## 1. 기본 통계
+- 총 노드: [개수]
+- 총 엣지: [개수]
+- Knowledge Density: [값]
+
+## 2. Hub Node 발견
+| Hub Node | 연결 수 | 주요 연결 대상 |
+|:---|:---|:---|
+| | | |
+
+## 3. Bridge Node 발견
+| Bridge Node | 연결된 Cluster | 역할 |
+|:---|:---|:---|
+| | | |
+
+## 4. Knowledge Cluster 발견
+| Cluster ID | 주요 노드 | 핵심 주제 |
+|:---|:---|:---|
+| | | |
+
+## 5. Mental Model 발견
+[Cluster 간 관계를 아우르는 상위 패턴/프레임워크]
+
+## 6. 개선 제안
+- 고립된 Orphan Node: [목록] → [연결 계획]
+- 약한 연결 강화: [제안]
+```</pre>
+
+<hr>
+
+<h2>🛠️ 도구: Knowledge Evolution (버전 관리)</h2>
+<p>지식도 코드처럼 버전 관리가 필요합니다. K-OS는 5가지 진화 연산을 정의합니다.</p>
+<table>
+<tr><th>연산</th><th>설명</th><th>사용 시점</th></tr>
+<tr><td>Merge</td><td>두 개 이상의 지식을 하나로 통합</td><td>중복되거나 유사한 지식이 발견되었을 때</td></tr>
+<tr><td>Split</td><td>하나의 지식을 여러 개로 분할</td><td>하나의 지식이 너무 커서 여러 개념을 포함할 때</td></tr>
+<tr><td>Replace</td><td>오래된 지식을 새로운 지식으로 대체</td><td>새로운 정보가 기존 지식을 완전히 대체할 때</td></tr>
+<tr><td>Fork</td><td>기존 지식을 기반으로 새로운 변형 생성</td><td>기존 지식을 다른 맥락에 적용할 때</td></tr>
+<tr><td>Refactor</td><td>지식의 구조를 개선하나 내용은 유지</td><td>연결성을 높이거나 이해도를 개선할 때</td></tr>
+</table>
+
+<h3>Knowledge Evolution 템플릿</h3>
+<pre>```markdown
+# Knowledge Evolution 기록
+
+## 진화 연산: [Merge/Split/Replace/Fork/Refactor]
+
+## 대상 지식
+- [대상 지식 ID/이름]
+- [대상 지식 ID/이름] (Merge/Fork 시)
+
+## 진화 이유
+[왜 이 진화가 필요한가?]
+
+## 진화 전
+[진화 전 지식의 상태]
+
+## 진화 후
+[진화 후 지식의 상태]
+
+## 영향 분석
+- 영향받는 다른 지식: [목록]
+- Knowledge Graph 변화: [설명]
+
+## 진화 일자: [YYYY-MM-DD]
+```</pre>
+
+<hr>
+
+<h2>🔗 도구: 통합 파이프라인 (Working → Thinking → Knowledge)</h2>
+<p>이 시리즈를 통해 Working, Thinking, Knowledge 세 엔진이 하나의 통합 시스템으로 연결됩니다.</p>
+
+<pre>```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    통합 AI 시스템 파이프라인 v1.0                           │
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│  📥 Input (업무 요청, 문제, 정보, 아이디어)                                  │
+│       │                                                                     │
+│       ▼                                                                     │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │  Phase 1: Working with AI (업무 실행)                               │   │
+│  │  • Workspace: AI_Work/ 폴더                                       │   │
+│  │  • Workflow: 재료 → 가공 → 결과물                                  │   │
+│  │  • Rules: AI_RULES.md, GLOBAL_RULES.md                           │   │
+│  │  • QC: 3단계 품질관리                                              │   │
+│  │  → Output: 업무 결과물 (문서, 코드, 보고서)                         │   │
+│  └────────────────────────┬────────────────────────────────────────────┘   │
+│                           ▼ (결과물이 Thinking의 재료가 됨)                 │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │  Phase 2: Thinking with AI (사고 실행)                              │   │
+│  │  • Q: 질문 설계 (범위·관점·기준·형식)                              │   │
+│  │  • H: 가설 설계 ("만약 A라면 B이다")                                │   │
+│  │  • E: 증거 평가 (EQI 적용)                                         │   │
+│  │  • R: 추론 감사 (Reasoning Audit)                                  │   │
+│  │  → Output: 검증된 결론, 의사결정, 인사이트                          │   │
+│  └────────────────────────┬────────────────────────────────────────────┘   │
+│                           ▼ (결론과 인사이트가 Knowledge의 재료가 됨)       │
+│  ┌─────────────────────────────────────────────────────────────────────┐   │
+│  │  Phase 3: Knowledge with AI (지식화)                                │   │
+│  │  • Capture: EIQ로 정보 선별                                         │   │
+│  │  • Validate: 정보 검증                                              │   │
+│  │  • Structure: PARA + MOC 구조화                                     │   │
+│  │  • Connect: Knowledge Graph 연결                                    │   │
+│  │  • Reuse: 합성 및 재사용                                            │   │
+│  │  • Evolve: Merge/Split/Replace/Fork/Refactor                       │   │
+│  │  → Output: 지식 자산 (Knowledge Asset)                              │   │
+│  └─────────────────────────────────────────────────────────────────────┘   │
+│                                                                             │
+│  📤 Output: 지식 자산이 다음 업무의 Input으로 순환                           │
+│                                                                             │
+│  🔄 Feedback Loop: Knowledge Asset → Working Input → ...                    │
+│                                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+```</pre>
+
+<hr>
+
+<h2>📌 Module 1: 정보를 포착하고 검증하자 (Capture &amp; Validate)</h2>
+<p>K-OS의 첫 번째 단계. 정보를 포착하고, EIQ로 평가하며, 검증(Validate)합니다.</p>
+
+<h3>① Experiment — 정보 포착과 검증의 차이</h3>
+<p>당신이 해야 할 일: 최근 접한 정보 2개를 비교해보세요.</p>
+<p><strong>정보 A (포착만):</strong></p>
+<p>"AI가 교육을 바꾼다는 연구 결과가 나왔대."</p>
+<p><strong>정보 B (포착 + 검증):</strong></p>
+<p>"2024년 6월, MIT 연구팀이 발표한 논문에 따르면, AI 튜터를 사용한 학생들의 성적이 평균 15% 향상되었다고 합니다. 이 연구는 5,000명의 학생을 대상으로 한 무작위 대조군 실험 결과이며, 저명한 학술지 'Nature Education'에 게재되었습니다."</p>
+<p>→ 정보 B를 검증하기 위해 어떤 추가 확인이 필요할까요? (출처 확인, 저자 신뢰도, 연구 방법론 등)</p>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>당신은 정보를 접할 때 출처를 확인하나요? 아니면 내용만 믿고 넘어가나요?</li>
+<li>잘못된 정보를 지식으로 저장한 경험이 있나요?</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p class="discovery">"아, 모든 정보를 저장해서는 안 되고, 검증된 정보만 저장해야 하는구나."</p>
+
+<h3>④ Rule — K-OS 법칙</h3>
+<table>
+<tr><th style="width:100px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule C1</td><td>모든 정보는 Capture(포착)와 Validate(검증)를 거쳐야 한다. 포착만 하고 검증하지 않으면 오정보를 지식으로 저장할 위험이 있습니다.</td></tr>
+<tr><td>Rule C2</td><td>EIQ + 검증 = 저장 가능한 정보. EIQ 3.0 이상이고 검증(출처 확인, 교차 검증)이 완료된 정보만 저장하세요.</td></tr>
+<tr><td>Rule C3</td><td>검증은 3단계로 수행하라. ① 출처 확인, ② 교차 검증(2개 이상 출처), ③ 논리적 일관성 점검.</td></tr>
+</table>
+
+<h3>⑤ Practice — EIQ + 검증 적용하기</h3>
+<p><strong>Step 1.</strong> 최근 접한 정보 5개를 선택하세요.</p>
+<p><strong>Step 2.</strong> 각 정보에 EIQ를 적용하세요.</p>
+<table>
+<tr><th>정보</th><th>출처 (0.25)</th><th>신선도 (0.20)</th><th>깊이 (0.20)</th><th>관련성 (0.20)</th><th>재사용성 (0.15)</th><th>참신성 (가산점)</th><th>EIQ</th></tr>
+<tr><td>정보 1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>정보 2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>정보 3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>정보 4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>정보 5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+<p><strong>Step 3.</strong> EIQ 3.0 이상인 정보에 대해 검증을 수행하세요.</p>
+<ul>
+<li>출처 확인: 출처가 신뢰할 수 있는가?</li>
+<li>교차 검증: 다른 출처에서도 동일한 정보를 확인할 수 있는가?</li>
+<li>논리적 일관성: 정보 내부에 모순은 없는가?</li>
+</ul>
+<p><strong>Step 4.</strong> 검증을 통과한 정보만 AI_Work/knowledge/inbox/에 저장하세요.</p>
+<p>🎯 성공 기준: 5개 정보 중 2개 이상이 검증을 통과하고 저장되었다면 성공입니다!</p>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table>
+<tr><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"출처는 대충 확인했어."</td><td>출처는 정확히 확인하라. 저자, 기관, 발행일을 반드시 기록하라.</td></tr>
+<tr><td>"이 정보는 맞을 거야."</td><td>검증하지 않은 정보는 저장하지 마라. 틀린 정보를 지식으로 삼으면 모든 추론이 흔들린다.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — 정보 검증 워크숍</h3>
+<p>목표: 최근 이슈가 된 뉴스나 보고서 1개를 선정하여 EIQ 적용 및 검증을 수행합니다.</p>
+<ol>
+<li>최근 화제가 된 뉴스나 보고서 1개를 선택하세요.</li>
+<li>EIQ를 적용하세요.</li>
+<li>출처 확인, 교차 검증, 논리적 일관성을 점검하세요.</li>
+<li>검증 결과를 AI_Work/knowledge/validation/validation_log.md에 기록하세요.</li>
+</ol>
+<p>🎯 성공 기준: 정보의 신뢰도를 3가지 기준으로 평가하고, 저장 여부를 결정했다면 성공입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table>
+<tr><th>K-OS 단계</th><th>핵심 문장</th></tr>
+<tr><td>Capture</td><td>EIQ로 정보를 선별하라</td></tr>
+<tr><td>Validate</td><td>출처·교차·논리 3단계 검증</td></tr>
+<tr><td>Rule</td><td>EIQ 3.0+ &amp; 검증 통과 = 저장</td></tr>
+</table>
+
+<hr>
+
+<h2>📌 Module 2: 정보를 구조화하자 (Structure)</h2>
+<p>K-OS의 세 번째 단계. 선별되고 검증된 정보를 목적에 맞게 분류하고 구조화합니다.</p>
+
+<h3>① Experiment — 두 가지 분류 체계 비교</h3>
+<p>당신이 해야 할 일: 같은 정보를 두 가지 방식으로 분류해보세요.</p>
+<p><strong>방식 A (주제별 분류):</strong></p>
+<ul>
+<li>AI 기술</li>
+<li>마케팅</li>
+<li>프로젝트 관리</li>
+<li>개인 개발</li>
+</ul>
+<p><strong>방식 B (상태별 분류):</strong></p>
+<ul>
+<li>현재 진행 중</li>
+<li>참고 자료</li>
+<li>완료/보관</li>
+<li>아이디어</li>
+</ul>
+<p>→ 어떤 분류 방식이 정보를 더 쉽게 찾고 활용하게 하나요?</p>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>현재 당신의 정보 저장 방식은 어떤가요? (폴더, 태그, 메모 앱 등)</li>
+<li>정보를 찾을 때 검색에 의존하나요, 아니면 구조에 의존하나요?</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p class="discovery">"아, 정보를 잘 정리하는 것은 나중에 찾기 위해서가 아니라, 지식으로 연결되기 위해서였구나."</p>
+
+<h3>④ Rule — K-OS 법칙</h3>
+<table>
+<tr><th style="width:100px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule O1</td><td>구조화는 목적을 따라야 한다. 정보를 어떻게 활용할지에 따라 분류 체계가 달라져야 합니다.</td></tr>
+<tr><td>Rule O2</td><td>PARA + MOC 하이브리드 모델을 사용하라. 프로젝트(Projects), 영역(Areas), 자료(Resources), 보관(Archives) + 주제별 MOC(Map of Content).</td></tr>
+<tr><td>Rule O3</td><td>태그는 계층이 아니라 네트워크다. 폴더는 하나의 경로만 제공하지만, 태그는 여러 경로를 허용합니다. 병행해서 사용하세요.</td></tr>
+</table>
+
+<h3>⑤ Practice — PARA + MOC 구조화</h3>
+<p><strong>Step 1.</strong> AI_Work/knowledge/ 폴더에 아래 4개 하위 폴더를 만드세요.</p>
+<pre>```
+AI_Work/knowledge/
+├── Projects/          # 현재 진행 중인 프로젝트
+├── Areas/             # 지속적으로 관리하는 영역 (업무, 건강, 학습 등)
+├── Resources/         # 참고 자료 (EIQ 3.0 이상)
+└── Archives/          # 완료된 프로젝트나 오래된 자료
+```</pre>
+<p><strong>Step 2.</strong> Module 1에서 저장한 정보를 적절한 폴더로 이동하세요.</p>
+<p><strong>Step 3.</strong> 각 폴더에 MOC(Map of Content) 파일을 만드세요.</p>
+<pre>```markdown
+# [폴더명] MOC
+
+## 목적
+[이 폴더에 저장된 정보들이 어떤 용도로 사용되는지]
+
+## 주요 주제
+- 주제 1: [관련 파일 링크]
+- 주제 2: [관련 파일 링크]
+
+## 태그 목록
+#태그1 #태그2 #태그3
+```</pre>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table>
+<tr><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"폴더를 너무 깊게 만들자."</td><td>3단계 이상 깊이의 폴더는 피하라. 태그로 대체하라.</td></tr>
+<tr><td>"파일명을 대충 짓자."</td><td>파일명은 검색의 핵심이다. YYMMDD_주제_요약.md 형식을 사용하라.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — 나만의 분류 체계 만들기</h3>
+<p>목표: 자신의 업무와 생활에 맞는 PARA + MOC 분류 체계를 설계합니다.</p>
+<ol>
+<li>자신의 현재 업무와 관심사를 기준으로 Areas를 정의하세요. (최대 5개)</li>
+<li>현재 진행 중인 Projects를 정의하세요. (최대 3개)</li>
+<li>자주 참조하는 Resources 주제를 정의하세요.</li>
+<li>각 폴더에 MOC 파일을 작성하세요.</li>
+</ol>
+<p>🎯 성공 기준: PARA 구조가 완성되고, 최소 2개의 MOC 파일이 작성되었다면 성공입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table>
+<tr><th>K-OS 단계</th><th>핵심 문장</th></tr>
+<tr><td>O (Organize)</td><td>구조화는 목적을 따라야 한다</td></tr>
+<tr><td>O (Organize)</td><td>PARA + MOC 하이브리드 모델</td></tr>
+<tr><td>O (Organize)</td><td>폴더는 하나의 길, 태그는 여러 길</td></tr>
+</table>
+
+<hr>
+
+<h2>📌 Module 3: 지식을 연결하자 — Graph 심화 (Connect)</h2>
+
+<h3>① Experiment — Hub와 Bridge의 힘</h3>
+<p>당신이 해야 할 일: 지식 네트워크에서 Hub와 Bridge의 역할을 이해해보세요.</p>
+<p><strong>Hub Node (중심 노드):</strong></p>
+<ul>
+<li>연결이 5개 이상인 노드</li>
+<li>Hub를 중심으로 지식이 집중됨</li>
+<li>예: "AI"라는 개념이 여러 분야(교육, 의료, 금융)와 연결됨</li>
+</ul>
+<p><strong>Bridge Node (연결 노드):</strong></p>
+<ul>
+<li>서로 다른 Cluster를 연결하는 노드</li>
+<li>예: "데이터"라는 개념이 "AI Cluster"와 "통계 Cluster"를 연결함</li>
+</ul>
+<p>→ 당신의 Knowledge Graph에서 Hub와 Bridge는 무엇인가요?</p>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>당신의 지식 네트워크에서 가장 연결이 많은 Hub는 무엇인가요?</li>
+<li>서로 다른 분야를 연결하는 Bridge는 무엇인가요?</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p class="discovery">"아, Hub를 강화하고 Bridge를 발견하는 것이 지식 네트워크를 성장시키는 핵심이구나."</p>
+
+<h3>④ Rule — K-OS 법칙</h3>
+<table>
+<tr><th style="width:100px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule N1</td><td>Hub Node를 식별하고 강화하라. Hub는 지식 네트워크의 중심입니다. Hub에 새로운 지식을 연결하면 전체 네트워크가 성장합니다.</td></tr>
+<tr><td>Rule N2</td><td>Bridge Node를 찾아내고 활용하라. Bridge는 서로 다른 분야를 연결합니다. Bridge를 통해 창의적 통찰이 탄생합니다.</td></tr>
+<tr><td>Rule N3</td><td>Orphan Node를 연결하라. 연결이 없는 노드는 지식으로서 가치가 없습니다. 반드시 연결을 만들어주세요.</td></tr>
+</table>
+
+<h3>⑤ Practice — Knowledge Graph 심화 분석</h3>
+<p><strong>Step 1.</strong> Module 2까지 구조화한 정보를 바탕으로 Knowledge Graph를 구성하세요.</p>
+<p><strong>Step 2.</strong> 다음 분석을 수행하세요.</p>
+<table>
+<tr><th>분석 항목</th><th>결과</th><th>의미</th></tr>
+<tr><td>총 노드 수</td><td>[개수]</td><td></td></tr>
+<tr><td>총 엣지 수</td><td>[개수]</td><td></td></tr>
+<tr><td>Knowledge Density</td><td>[값]</td><td></td></tr>
+<tr><td>Hub Node (연결 5+)</td><td>[목록]</td><td></td></tr>
+<tr><td>Bridge Node (Cluster 연결)</td><td>[목록]</td><td></td></tr>
+<tr><td>Orphan Node (연결 0)</td><td>[목록]</td><td></td></tr>
+</table>
+<p><strong>Step 3.</strong> 발견된 Hub를 강화하고, Orphan을 연결하는 계획을 세우세요.</p>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table>
+<tr><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"모든 노드를 똑같이 중요하게 생각해."</td><td>Hub에 집중하라. Hub 하나를 강화하는 것이 Orphan 10개를 연결하는 것보다 효과적이다.</td></tr>
+<tr><td>Bridge를 발견만 하고 활용하지 않는다.</td><td>Bridge를 발견하면, 그 Bridge를 통해 두 Cluster를 연결하는 합성을 시도하라.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — Knowledge Graph 진단</h3>
+<p>목표: 현재 Knowledge Graph를 진단하고, Hub·Bridge·Orphan을 식별합니다.</p>
+<ol>
+<li>Module 2의 구조화된 정보를 바탕으로 Knowledge Graph를 작성하세요.</li>
+<li>Hub Node, Bridge Node, Orphan Node를 각각 찾아내세요.</li>
+<li>각 유형별로 개선 계획을 수립하세요.
+  <ul>
+    <li>Hub 강화: Hub에 연결할 새로운 지식은?</li>
+    <li>Bridge 활용: Bridge를 통해 어떤 합성을 시도할 수 있을까?</li>
+    <li>Orphan 연결: Orphan을 어떤 기존 지식과 연결할 수 있을까?</li>
+  </ul>
+</li>
+</ol>
+<p>🎯 성공 기준: Hub 1개 이상, Bridge 1개 이상, Orphan 1개 이상을 식별하고 개선 계획을 수립했다면 성공입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table>
+<tr><th>K-OS 단계</th><th>핵심 문장</th></tr>
+<tr><td>Connect</td><td>Hub를 강화하고 Bridge를 발견하라</td></tr>
+<tr><td>Connect</td><td>Orphan은 연결하라</td></tr>
+<tr><td>Connect</td><td>Hub·Bridge·Cluster로 Graph를 진단하라</td></tr>
+</table>
+
+<hr>
+
+<h2>📌 Module 4: 지식을 재사용하자 (Reuse)</h2>
+
+<h3>① Experiment — 재사용의 세 가지 방식</h3>
+<p>당신이 해야 할 일: 같은 지식을 세 가지 방식으로 재사용해보세요.</p>
+<p>지식: "AI는 반복 작업을 자동화한다."</p>
+<p><strong>방식 1 - 합성 (Synthesis):</strong></p>
+<p>"AI의 반복 작업 자동화 + 인간의 창의적 문제 해결 = 새로운 업무 모델"</p>
+<p><strong>방식 2 - 적용 (Application):</strong></p>
+<p>"내 업무 중 반복적인 부분을 AI로 자동화하면 시간이 얼마나 절약될까?"</p>
+<p><strong>방식 3 - 전이 (Transfer):</strong></p>
+<p>"이 원리를 마케팅, 교육, 제조 등 다른 분야에 적용하면?"</p>
+<p>→ 어떤 방식이 가장 새로운 통찰을 주었나요?</p>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>당신은 지식을 주로 어떤 방식으로 재사용하나요?</li>
+<li>세 가지 방식 중 가장 자주 사용하는 방식과 가장 적게 사용하는 방식은 무엇인가요?</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p class="discovery">"아, 지식 재사용은 합성·적용·전이 세 가지 방식이 있었구나. 나는 한 가지 방식에만 익숙했어."</p>
+
+<h3>④ Rule — K-OS 법칙</h3>
+<table>
+<tr><th style="width:100px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule R1</td><td>재사용은 3가지 방식으로 수행하라. ① 합성(Synthesis): 여러 지식을 결합, ② 적용(Application): 기존 지식을 새 문제에 사용, ③ 전이(Transfer): 다른 분야로 확장.</td></tr>
+<tr><td>Rule R2</td><td>재사용할수록 지식의 가치는 증가한다. 한 번 사용하고 잊히는 지식은 가치가 낮습니다.</td></tr>
+<tr><td>Rule R3</td><td>재사용 기록을 남겨라. 어떤 지식을 어떻게 재사용했는지 기록하면, 재사용 패턴을 발견할 수 있습니다.</td></tr>
+</table>
+
+<h3>⑤ Practice — 재사용 3가지 방식 실행하기</h3>
+<p><strong>Step 1.</strong> Knowledge Graph에서 Hub Node 1개를 선택하세요.</p>
+<p><strong>Step 2.</strong> 그 지식을 세 가지 방식으로 재사용해보세요.</p>
+<pre>```markdown
+# 지식 재사용 기록
+
+## 대상 지식: [지식명]
+
+### 1. 합성 (Synthesis)
+- 결합할 지식: [다른 지식]
+- 합성 결과: [새로운 통찰]
+
+### 2. 적용 (Application)
+- 적용할 문제: [현재 직면한 문제]
+- 적용 결과: [해결책/아이디어]
+
+### 3. 전이 (Transfer)
+- 전이할 분야: [다른 분야]
+- 전이 결과: [새로운 관점]
+```</pre>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table>
+<tr><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"한 번 쓰면 끝이야."</td><td>지식은 반복해서 재사용할수록 가치가 증가한다.</td></tr>
+<tr><td>합성만 하고 적용과 전이는 안 한다.</td><td>세 가지 방식을 모두 시도하라. 각각 다른 통찰을 준다.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — 재사용 워크숍</h3>
+<p>목표: Knowledge Graph에서 2개의 지식을 선택하여 3가지 방식으로 재사용합니다.</p>
+<ol>
+<li>Knowledge Graph에서 Hub Node 1개와 Bridge Node 1개를 선택하세요.</li>
+<li>각 지식에 대해 합성·적용·전이를 수행하세요.</li>
+<li>결과를 AI_Work/knowledge/reuse/reuse_log.md에 기록하세요.</li>
+</ol>
+<p>🎯 성공 기준: 2개 지식 × 3가지 방식 = 6개의 재사용 결과물이 도출되면 성공입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table>
+<tr><th>K-OS 단계</th><th>핵심 문장</th></tr>
+<tr><td>Reuse</td><td>합성·적용·전이 3가지 방식</td></tr>
+<tr><td>Reuse</td><td>재사용할수록 지식의 가치는 증가</td></tr>
+<tr><td>Reuse</td><td>재사용 기록을 남겨라</td></tr>
+</table>
+
+<hr>
+
+<h2>📌 Module 5: 지식을 진화시키자 (Evolve)</h2>
+<p>K-OS의 여섯 번째 단계. 지식에 버전 관리 개념(Merge·Split·Replace·Fork·Refactor)을 도입하여 진화시킵니다.</p>
+
+<h3>① Experiment — 지식 버전 관리</h3>
+<p>당신이 해야 할 일: 자신이 가지고 있는 지식 하나를 선택하고, 버전 관리 연산을 적용해보세요.</p>
+<p>대상 지식: "AI 프롬프트는 구체적일수록 좋다"</p>
+<p><strong>Merge (통합):</strong></p>
+<p>"AI 프롬프트는 구체적일수록 좋다" + "좋은 프롬프트는 역할을 부여한다" = "구체적인 역할을 부여한 프롬프트가 가장 효과적이다"</p>
+<p><strong>Split (분할):</strong></p>
+<p>"좋은 프롬프트는 구체적이고, 역할을 부여하며, 출력 형식을 지정한다" → 3개의 개별 지식으로 분할</p>
+<p><strong>Replace (대체):</strong></p>
+<p>"AI 프롬프트는 구체적일수록 좋다" → "AI 프롬프트는 구체적이고 역할을 부여하며, 출력 형식을 지정해야 한다"로 대체</p>
+<p>→ 어떤 연산이 가장 유용했나요?</p>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>당신이 가지고 있는 지식 중 중복되거나 모호한 지식은 없나요?</li>
+<li>지식을 더 정확하고 유용하게 만들기 위해 어떤 연산이 필요할까요?</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p class="discovery">"아, 지식도 코드처럼 버전 관리가 필요하구나. Merge, Split, Replace로 지식을 정제할 수 있어."</p>
+
+<h3>④ Rule — K-OS 법칙</h3>
+<table>
+<tr><th style="width:100px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule E1</td><td>지식은 5가지 방식으로 진화시킨다. Merge(통합), Split(분할), Replace(대체), Fork(분기), Refactor(구조 개선).</td></tr>
+<tr><td>Rule E2</td><td>분기별로 지식 버전을 검토하라. 3개월마다 지식의 현재 버전을 평가하고, 진화가 필요한지 판단하세요.</td></tr>
+<tr><td>Rule E3</td><td>진화 기록은 Knowledge Graph에 반영하라. 진화 연산을 수행한 후에는 Knowledge Graph를 업데이트하세요.</td></tr>
+</table>
+
+<h3>⑤ Practice — 지식 진화 실행하기</h3>
+<p><strong>Step 1.</strong> AI_Work/knowledge/evolution/ 폴더를 만드세요.</p>
+<p><strong>Step 2.</strong> Knowledge Graph에서 2개의 지식을 선택하세요.</p>
+<p><strong>Step 3.</strong> 각 지식에 대해 적절한 진화 연산을 적용하세요.</p>
+<pre>```markdown
+# 지식 진화 기록
+
+## 대상 지식 1: [지식명]
+- 진화 연산: [Merge/Split/Replace/Fork/Refactor]
+- 진화 전: [이전 상태]
+- 진화 후: [이후 상태]
+- 진화 이유: [왜 필요한가?]
+- 영향 분석: [다른 지식에 미치는 영향]
+```</pre>
+<p><strong>Step 4.</strong> 진화된 지식을 Knowledge Graph에 반영하세요.</p>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table>
+<tr><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"한 번 만든 지식은 그대로 둬."</td><td>지식도 진화해야 한다. 정기적으로 검토하고 개선하라.</td></tr>
+<tr><td>진화 기록을 남기지 않는다.</td><td>진화 기록은 지식 시스템의 성장 과정이다. 반드시 남겨라.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — 지식 진화 실행</h3>
+<p>목표: Knowledge Graph에서 3개의 지식을 선택하여 진화 연산을 적용합니다.</p>
+<ol>
+<li>Knowledge Graph에서 중복되거나 모호한 지식 3개를 선택하세요.</li>
+<li>각 지식에 적절한 진화 연산(Merge/Split/Replace/Fork/Refactor)을 적용하세요.</li>
+<li>진화 결과를 AI_Work/knowledge/evolution/evolution_log.md에 기록하세요.</li>
+</ol>
+<p>🎯 성공 기준: 3개의 지식에 각각 다른 진화 연산을 적용하고 기록했다면 성공입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table>
+<tr><th>K-OS 단계</th><th>핵심 문장</th></tr>
+<tr><td>Evolve</td><td>Merge·Split·Replace·Fork·Refactor</td></tr>
+<tr><td>Evolve</td><td>분기별 지식 버전 검토</td></tr>
+<tr><td>Evolve</td><td>진화 기록을 Knowledge Graph에 반영</td></tr>
+</table>
+
+<hr>
+
+<h2>📌 Module 6: K-OS Engine 구축하기</h2>
+<p>K-OS의 최종 단계. Capture→Validate→Structure→Connect→Reuse→Evolve→Archive→Retire의 전체 Lifecycle을 하나의 실행 가능한 엔진으로 통합하고, Health Check 지표로 시스템을 모니터링합니다.</p>
+
+<h3>① Experiment — 전체 Lifecycle 시뮬레이션</h3>
+<p>당신이 해야 할 일: 새로운 정보 하나를 K-OS 엔진에 통과시켜보세요.</p>
+<ol>
+<li>새로운 정보를 선택하세요.</li>
+<li>Capture: EIQ 적용</li>
+<li>Validate: 검증 수행</li>
+<li>Structure: PARA 배치</li>
+<li>Connect: Knowledge Graph 연결</li>
+<li>Reuse: 합성·적용·전이 시도</li>
+<li>Evolve: 필요시 Merge/Split/Replace</li>
+<li>Archive/Retire: 필요시 보관 또는 은퇴 결정</li>
+</ol>
+<p>→ 이 정보가 8단계를 통과하면서 어떤 변화를 겪었나요?</p>
+
+<h3>② Reflection — 생각해보기</h3>
+<ul>
+<li>8단계 중 가장 유용했던 단계는 무엇인가요?</li>
+<li>K-OS Health Check를 통해 시스템의 상태를 어떻게 평가할 수 있을까요?</li>
+</ul>
+
+<h3>③ Discovery — 방금 깨달은 것</h3>
+<p class="discovery">"아, 이제 정보가 들어오면 자동으로 처리되는 시스템이 생겼구나. 8단계 Lifecycle이 하나의 엔진으로 돌아가고 있어."</p>
+
+<h3>④ Rule — K-OS 법칙 (Engine)</h3>
+<table>
+<tr><th style="width:100px;">법칙</th><th>내용</th></tr>
+<tr><td>Rule Loop1</td><td>K-OS Engine은 8단계 Lifecycle로 구성된다. Capture→Validate→Structure→Connect→Reuse→Evolve→Archive→Retire.</td></tr>
+<tr><td>Rule Loop2</td><td>Health Check로 엔진 상태를 모니터링하라. 분기별로 Knowledge Density, Reuse Rate, Growth Rate, Health Score를 계산하세요.</td></tr>
+<tr><td>Rule Loop3</td><td>Engine을 사용할수록 지식 시스템은 최적화된다.</td></tr>
+</table>
+
+<h3>⑤ Practice — K-OS Engine 완성하기</h3>
+<p><strong>Step 1.</strong> AI_Work/knowledge/kos_engine.md 파일을 만드세요.</p>
+<p><strong>Step 2.</strong> 아래 템플릿을 채우세요.</p>
+<pre>```markdown
+# K-OS Engine v2.0 (Knowledge Operating System)
+
+## Lifecycle (8단계)
+1. Capture → 2. Validate → 3. Structure → 4. Connect → 5. Reuse → 6. Evolve → 7. Archive → 8. Retire
+
+## 내장 도구
+- EIQ 계산기 (출처·신선도·깊이·관련성·재사용성·참신성)
+- PARA + MOC 구조
+- Knowledge Graph (Hub·Bridge·Cluster)
+- 재사용 템플릿 (합성·적용·전이)
+- 진화 연산 (Merge·Split·Replace·Fork·Refactor)
+
+## K-OS 지표
+- Knowledge Density: [현재 값]
+- Reuse Rate: [현재 값]
+- Growth Rate: [현재 값]
+- Health Score: [현재 값]
+
+## Health Check (분기별 실행)
+| 분기 | Density | Reuse Rate | Growth Rate | Health Score | 등급 |
+|:---|:---|:---|:---|:---|:---|
+| 1 | | | | | |
+| 2 | | | | | |
+
+## 엔진 실행 기록
+| 날짜 | 정보 | Capture | Validate | Structure | Connect | Reuse | Evolve | Archive/Retire |
+|:---|:---|:---|:---|:---|:---|:---|:---|:---|
+```</pre>
+
+<h3>⑥ Common Mistakes — 하지 마세요</h3>
+<table>
+<tr><th>❌ 하지 마세요</th><th>✅ 이렇게 하세요</th></tr>
+<tr><td>"Engine을 만들었으니 이제 끝이야."</td><td>Engine은 시작일 뿐이다. 지속적으로 사용하고 개선하라.</td></tr>
+<tr><td>Health Check를 건너뛴다.</td><td>Health Check가 없으면 시스템이 병들어도 모른다.</td></tr>
+</table>
+
+<h3>⑦ Mini Project (20분) — K-OS Engine 테스트 + Health Check</h3>
+<p>목표: 새로운 정보 3개를 K-OS Engine에 통과시키고, Health Check를 실행합니다.</p>
+<ol>
+<li>새로운 정보 3개를 선택하세요.</li>
+<li>각 정보를 Capture→Validate→Structure→Connect→Reuse→Evolve 단계를 거치게 하세요.</li>
+<li>3개 정보 처리가 완료되면 Health Check를 실행하세요.
+  <ul>
+    <li>Knowledge Density 계산</li>
+    <li>Reuse Rate 계산</li>
+    <li>Growth Rate 계산</li>
+    <li>Health Score 계산</li>
+  </ul>
+</li>
+<li>결과를 Engine에 기록하세요.</li>
+</ol>
+<p>🎯 성공 기준: 3개 정보가 8단계 Lifecycle을 모두 통과하고, Health Check가 완료되었다면 성공입니다!</p>
+
+<h3>⑧ Summary — 오늘의 정리</h3>
+<table>
+<tr><th>K-OS 단계</th><th>핵심 문장</th></tr>
+<tr><td>Engine</td><td>Capture→Validate→Structure→Connect→Reuse→Evolve→Archive→Retire</td></tr>
+<tr><td>Engine</td><td>Health Check로 시스템 상태 모니터링</td></tr>
+<tr><td>Engine</td><td>사용할수록 최적화된다</td></tr>
+</table>
+
+<hr>
+
+<h2>🎉 Knowledge with AI 최종 프로젝트 (Final Project)</h2>
+<p>K-OS Engine을 1개월간 운영하고, Health Check 보고서를 제출합니다.</p>
+
+<h3>📁 제출물</h3>
+<table>
+<tr><th>번호</th><th>제출물</th><th>포함 내용</th></tr>
+<tr><td>1</td><td>Capture 로그</td><td>EIQ가 적용된 최소 10개 정보</td></tr>
+<tr><td>2</td><td>Validate 로그</td><td>검증을 통과한 정보 목록</td></tr>
+<tr><td>3</td><td>Structure 결과</td><td>PARA + MOC 구조</td></tr>
+<tr><td>4</td><td>Knowledge Graph</td><td>Hub·Bridge·Cluster 포함</td></tr>
+<tr><td>5</td><td>Reuse 기록</td><td>합성·적용·전이 결과물</td></tr>
+<tr><td>6</td><td>Evolve 기록</td><td>Merge/Split/Replace/Fork/Refactor 적용 내역</td></tr>
+<tr><td>7</td><td>Health Check 보고서</td><td>Density, Reuse Rate, Growth Rate, Health Score</td></tr>
+</table>
+<p>🎯 성공 기준: 1개월간 10개 이상의 정보가 Lifecycle을 통과하고, Health Score 6.0 이상을 달성했다면 성공입니다!</p>
+
+<hr>
+
+<h2>📖 Knowledge with AI를 마치며</h2>
+<p>축하합니다! 🎉</p>
+<p>당신은 이제 정보를 지식으로 전환하고, 지식 시스템을 지속적으로 진화시키는 K-OS를 갖추게 되었습니다.</p>
+<table>
+<tr><th>당신이 갖춘 것</th><th>도구/프레임워크</th></tr>
+<tr><td>정보 선별</td><td>EIQ (6대 기준)</td></tr>
+<tr><td>정보 검증</td><td>3단계 검증 (출처·교차·논리)</td></tr>
+<tr><td>정보 구조화</td><td>PARA + MOC</td></tr>
+<tr><td>지식 연결</td><td>Knowledge Graph (Hub·Bridge·Cluster)</td></tr>
+<tr><td>지식 재사용</td><td>합성·적용·전이</td></tr>
+<tr><td>지식 진화</td><td>Merge·Split·Replace·Fork·Refactor</td></tr>
+<tr><td>시스템 모니터링</td><td>Knowledge Density, Reuse Rate, Growth Rate, Health Score</td></tr>
+</table>
+
+<hr>
+
+<h2>📚 통합 AI 시스템 파이프라인 완성</h2>
+<p>이제 당신은 세 가지 엔진을 모두 갖추었습니다.</p>
+<pre>```
+📥 Input
+    ↓
+⚙️ Working with AI → 업무 실행
+    ↓
+🧠 Thinking with AI → 사고 실행 (QHER)
+    ↓
+📚 Knowledge with AI → 지식화 (K-OS)
+    ↓
+📤 Output: 지식 자산 → 다시 Input으로 순환
+```</pre>
+
+<hr>
+
+<h2>📚 다음 시리즈로의 연결</h2>
+<blockquote>"지식이 축적되면, 이제는 학습(Learning)이 필요합니다. 다음 시리즈에서는 AI와 함께 학습하고, 지식을 역량으로 전환하는 시스템을 배웁니다."</blockquote>
+<p>📘 Learning with AI: From Knowledge to Growth — Coming Soon</p>
+
+<hr>
+
+<p style="text-align:center;"><strong>Knowledge with AI: From Information to Knowledge</strong><br>K-OS Engine</p>
+
+<hr>
+
+<h2>📌 시리즈 확장 로드맵 (최종)</h2>
+<table>
+<tr><th>Phase</th><th>시리즈</th><th>프레임워크</th><th>성장 축</th></tr>
+<tr><td>Phase 1</td><td>Working with AI</td><td>AI OS, EBRE</td><td>업무 시스템</td></tr>
+<tr><td>Phase 2</td><td>Thinking with AI</td><td>QHER Engine</td><td>사고 시스템</td></tr>
+<tr><td>Phase 3</td><td>Knowledge with AI</td><td>K-OS Engine</td><td>지식 시스템</td></tr>
+<tr><td>Phase 4</td><td>Learning with AI</td><td>(준비 중)</td><td>학습 시스템</td></tr>
+<tr><td>Phase 5</td><td>Cognitive Engineering with AI</td><td>(준비 중)</td><td>인지 시스템</td></tr>
+</table>
+
+</body>
+</html>
